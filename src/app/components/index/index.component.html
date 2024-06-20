@@ -1,1 +1,51 @@
-<p>index works!</p>
+<div class="container " >
+    <div class="row">
+        <aside class="col-12 col-md-3 ">
+            <header class="container text-center">
+                <h2 class="Logo align-self-start text-start fw-bold">XYZGaming</h2>
+            </header>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-item">
+                            <button id="btn-login" class="btn btn-light w-100 mb-2">Logearse</button>
+                            <button id="btn-perfil" class="btn btn-light w-100 mb-2 d-none">Mi perfil</button>
+                            <button id="btn-logout" class="btn btn-light w-100 mb-2 d-none">Cerrar sesión</button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" >Todos los juegos</button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="play5" class="btn btn-light w-100 mb-2 boton-categoria">Play5</button>
+                        </li>
+                        <li class="nav-item"> 
+                            <button id="switch" class="btn btn-light w-100 mb-2 boton-categoria">Switch</button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="xbox" class="btn btn-light w-100 mb-2 boton-categoria">Xbox</button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria">PC</button>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-light w-100 mb-2 boton-carrito" href="carrito.html">Carrito</a>
+                            <span id="numcarrito" class="numero ms-2 mb-2 badge bg-white text-dark fs-6">0</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="container" >
+            <h2 class="fw-bold text-center" id="titulo-principal">Todos los Juegos</h2>
+            <div id="contenedor-juegos" class="row mb-4">
+                <!-- Los juegos se añadirán aquí por JS-->
+            </div>
+        </main>
+    </div>
+</div>
+<footer >
+    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>
+</footer>

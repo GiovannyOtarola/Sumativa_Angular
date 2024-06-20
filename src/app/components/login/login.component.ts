@@ -40,7 +40,7 @@ export class LoginComponent{
          
           
            // Redirigir al usuario a la página principal después del inicio de sesión exitoso
-           this.router.navigate(['/principal']).then(() => {
+           this.router.navigate(['/index']).then(() => {
             // Recargar la página después de redirigir
             window.location.reload();
           });
