@@ -15,7 +15,7 @@
             <label for="usuario" class="form-label">Nombre de Usuario</label>
             <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="Ingresa tu Nombre de Usuario">
             <div *ngIf="registroForm.get('usuario')?.touched && registroForm.get('usuario')?.invalid" class="error-message fw-bold text-danger">
-              <small *ngIf="registroForm.get('usuario')?.errors?.['required']">El usuario es obligatorio.</small>
+              <small  *ngIf="registroForm.get('usuario')?.errors?.['required']">El usuario es obligatorio.</small>
             </div>
           </div>
           <div class="mb-3">
