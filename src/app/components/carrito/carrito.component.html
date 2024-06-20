@@ -1,5 +1,5 @@
-<div class="container ">
-    <div class="row ">
+<div class="container">
+    <div class="row">
         <aside class="col-12 col-md-3">
             <header class="container text-center">
                 <h2 class="Logo align-self-start text-start fw-bold">XYZGaming</h2>
@@ -14,33 +14,63 @@
                             <a class="btn btn-light w-100 mb-2" routerLink="/index">Seguir Comprando</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-light w-100 mb-2" routerLink="/carrito">Carrito</a>  
+                            <a class="btn btn-light w-100 mb-2" routerLink="/carrito">Carrito</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </aside>
-        <main class="container ">
+        <main class="container">
             <h2 class="fw-bold text-center fs-1">Carrito</h2>
-            <p id="carrito-vacio" class="fw-bold text-center fs-1">🛒 Tu carrito está vacío</p>
-            <div id="carrito-juegos" class="row mb-4">
-                <!--Esto se va a completar con el js-->
-            </div>
-            <div id="carrito-acciones" class="row text-center">
-                <div class="col-2 align-items-center">
-                    <button id="carrito-acciones-vaciar" class="btn btn-primary">Vaciar Carrito</button>
+            <p id="carrito-vacio" class="fw-bold text-center fs-1" *ngIf="juegosEnCarrito.length === 0">🛒 Tu carrito está vacío</p>
+            <div id="carrito-juegos" class="row mb-4" *ngIf="juegosEnCarrito.length > 0">
+                <div class="carrito-juegos col-12 d-flex align-items-center mb-3" *ngFor="let juego of juegosEnCarrito">
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <img class="img-fluid" [src]="juego.Image" width="100">
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div>
+                            <small class="fw-bold">Nombre</small>
+                            <h3 class="fw-bold">{{ juego.titulo }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div>
+                            <small class="fw-bold">Cantidad</small>
+                            <p>{{ juego.cantidad }}</p>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div>
+                            <small class="fw-bold">Precio</small>
+                            <p>{{ juego.precio | currency }}</p>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div>
+                            <small class="fw-bold">Subtotal</small>
+                            <p>{{ juego.cantidad && juego.precio ? (juego.cantidad * juego.precio | currency) : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <button class="btn btn-danger carrito-juego-eliminar" (click)="eliminarDelCarrito(juego)">Eliminar</button>
+                    </div>
                 </div>
-                <div class="col-7  d-flex justify-content-end align-items-center ">
+            </div>
+            <div id="carrito-acciones" class="row text-center" *ngIf="juegosEnCarrito.length > 0">
+                <div class="col-2 align-items-center">
+                    <button id="carrito-acciones-vaciar" class="btn btn-primary" (click)="vaciarCarrito()">Vaciar Carrito</button>
+                </div>
+                <div class="col-7 d-flex justify-content-end align-items-center">
                     <p class="fw-bold fs-4">Total: </p>
-                    <p id="total" class="fw-bold fs-4">$100</p>
+                    <p id="total" class="fw-bold fs-4">{{ calcularTotal() | currency }}</p>
                 </div>
                 <div class="col-3 align-items-center">
-                    <button id="carrito-acciones-comprar" class="btn btn-primary">Comprar ahora</button>
+                    <button id="carrito-acciones-comprar" class="btn btn-primary" (click)="comprar()">Comprar ahora</button>
                 </div>
             </div>
-            <p id="carrito-comprado" class="text-center fs-1 mt-5 fw-bold">Muchas gracias por su compra</p>
+            
         </main>
-        
     </div>
 </div>
 <footer class="container text-center">

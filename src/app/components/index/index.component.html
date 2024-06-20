@@ -2,7 +2,7 @@
     <div class="row">
         <aside class="col-12 col-md-3 ">
             <header class="container text-center">
-                <h2 class="Logo align-self-start text-start fw-bold">XYZGaming</h2>
+                <h2 class="Logo align-self-start text-start fw-bold ">XYZGaming</h2>
             </header>
             <nav class="navbar navbar-expand-md navbar-light">
                 <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,24 +11,24 @@
                 <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <button id="btn-login" class="btn btn-light w-100 mb-2" routerLink="/login">Logearse</button>
-                            <button id="btn-perfil" class="btn btn-light w-100 mb-2 d-none" routerLink="/perfil">Mi perfil</button>
-                            <button id="btn-logout" class="btn btn-light w-100 mb-2 d-none" >Cerrar sesión</button>
+                            <button id="btn-login" *ngIf="!isLoggedIn" class="btn btn-light w-100 mb-2" routerLink="/login">Logearse</button>
+                            <button id="btn-perfil"  *ngIf="isLoggedIn"class="btn btn-light w-100 mb-2" routerLink="/perfil">Mi perfil</button>
+                            <button id="btn-logout" *ngIf="isLoggedIn" class="btn btn-light w-100 mb-2" (click)="logout()">Cerrar sesión</button>
                         </li>
                         <li class="nav-item">
-                            <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" >Todos los juegos</button>
+                            <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos('todos')">Todos los juegos</button>
                         </li>
                         <li class="nav-item">
-                            <button id="play5" class="btn btn-light w-100 mb-2 boton-categoria">Play5</button>
+                            <button id="play5" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos('play5')">Play5</button>
                         </li>
                         <li class="nav-item"> 
-                            <button id="switch" class="btn btn-light w-100 mb-2 boton-categoria">Switch</button>
+                            <button id="switch" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos('switch')">Switch</button>
                         </li>
                         <li class="nav-item">
-                            <button id="xbox" class="btn btn-light w-100 mb-2 boton-categoria">Xbox</button>
+                            <button id="xbox" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos('xbox')">Xbox</button>
                         </li>
                         <li class="nav-item">
-                            <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria">PC</button>
+                            <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos('pc')">PC</button>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="btn btn-light w-100 mb-2 boton-carrito" routerLink="/carrito">Carrito</a>
@@ -38,12 +38,21 @@
                 </div>
             </nav>
         </aside>
-        <main class="container" >
-            <h2 class="fw-bold text-center" id="titulo-principal">Todos los Juegos</h2>
+        <main class="container">
+            <h2 class="fw-bold text-center">{{ tituloPrincipal }}</h2>
             <div id="contenedor-juegos" class="row mb-4">
-                <!-- Los juegos se añadirán aquí por JS-->
+              <div *ngFor="let juego of juegosFiltrados" class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="h-100">
+                  <img class="card-img-top img-fluid" [src]="juego.Image" [alt]="juego.titulo">
+                  <div class="card-body text-center">
+                    <h3 class="card-title">{{ juego.titulo }}</h3>
+                    <p class="card-text">{{ juego.precio }}</p>
+                    <button class="btn btn-primary" (click)="agregarAlCarrito(juego)">Agregar</button>
+                  </div>
+                </div>
+              </div>
             </div>
-        </main>
+          </main>
     </div>
 </div>
 <footer >

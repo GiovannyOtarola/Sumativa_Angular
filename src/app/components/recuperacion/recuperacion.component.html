@@ -1,17 +1,20 @@
-<div class="container recovery-container">
-    <h1 class="text-center mb-4">Recuperación de contraseña</h1>
-    <p class="text-center text-dark">Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
-    <form>
-        <div class="mb-3">
-            <label for="usuarioEmail" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="usuarioEmail" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico">
+<div class="d-flex vh-100">
+    <div class="container recovery-container my-auto">
+        <h1 class="text-center mb-4">Recuperación de contraseña</h1>
+        <p class="text-center text-dark">Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+        <form>
+            <div class="mb-3">
+                <label for="usuarioEmail" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="usuarioEmail" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico">
+            </div>
+            <button type="button" id="mostrarPasswordBtn" class="btn btn-primary w-100">Mostrar contraseña</button>
+        </form>
+        <div class="text-center mt-3">
+            <a routerLink="/login">Volver</a>
         </div>
-        <button type="button" id="mostrarPasswordBtn" class="btn btn-primary w-100">mostrar contraseña</button>
-    </form>
-    <div class=" text-center mt-3">
-        <a  routerLink="/login">Volver</a>
     </div>
+    
 </div>
-<footer >
+<footer class="text-center mt-4">
     <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>
 </footer>
