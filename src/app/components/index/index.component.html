@@ -11,9 +11,9 @@
                 <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <button id="btn-login" class="btn btn-light w-100 mb-2">Logearse</button>
-                            <button id="btn-perfil" class="btn btn-light w-100 mb-2 d-none">Mi perfil</button>
-                            <button id="btn-logout" class="btn btn-light w-100 mb-2 d-none">Cerrar sesión</button>
+                            <button id="btn-login" class="btn btn-light w-100 mb-2" routerLink="/login">Logearse</button>
+                            <button id="btn-perfil" class="btn btn-light w-100 mb-2 d-none" routerLink="/perfil">Mi perfil</button>
+                            <button id="btn-logout" class="btn btn-light w-100 mb-2 d-none" >Cerrar sesión</button>
                         </li>
                         <li class="nav-item">
                             <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" >Todos los juegos</button>
@@ -31,7 +31,7 @@
                             <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria">PC</button>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-light w-100 mb-2 boton-carrito" href="carrito.html">Carrito</a>
+                            <a class="btn btn-light w-100 mb-2 boton-carrito" routerLink="/carrito">Carrito</a>
                             <span id="numcarrito" class="numero ms-2 mb-2 badge bg-white text-dark fs-6">0</span>
                         </li>
                     </ul>
