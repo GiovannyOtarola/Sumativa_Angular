@@ -22,14 +22,7 @@ export class AuthService {
     return this.authState.asObservable();
   }
 
-  login(user: any): void {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('sessionActive', 'true');
-      localStorage.setItem('loggedInUser', JSON.stringify(user));
-      this.authState.next(true);
-      window.location.reload();
-    }
-  }
+  
 
   logout(): void {
     if (typeof localStorage !== 'undefined') {
