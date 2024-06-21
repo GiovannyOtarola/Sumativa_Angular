@@ -34,9 +34,20 @@ export class RegistroComponent implements OnInit {
   onSubmit(): void {
     if (this.registroForm.valid) {
       const userData = this.registroForm.value;
-      //guardar datos en localStorage
-      localStorage.setItem('userData', JSON.stringify(userData));
-      console.log('Datos guardados:', userData);
+
+      // Obtener la lista de usuarios desde localStorage
+      const storedUsers = localStorage.getItem('userList');
+      const userList = storedUsers ? JSON.parse(storedUsers) : [];
+
+      // Agregar el nuevo usuario a la lista
+      userList.push(userData);
+
+      // Guardar la lista actualizada de vuelta en localStorage
+      localStorage.setItem('userList', JSON.stringify(userList));
+
+      console.log('Datos guardados:', userList);
+
+      // Redirigir a la página de login
       this.router.navigate(['/login']);
     } else {
       // Mostrar mensajes de error
