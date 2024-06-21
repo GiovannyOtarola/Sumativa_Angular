@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <button id="btn-login" *ngIf="!isLoggedIn" class="btn btn-light w-100 mb-2" routerLink="/login">Logearse</button>
+                            <button id="btn-login" *ngIf="!isLoggedIn" class="btn btn-light w-100 mb-2" routerLink="/login">Iniciar sesión</button>
                             <button id="btn-perfil"  *ngIf="isLoggedIn"class="btn btn-light w-100 mb-2" routerLink="/perfil">Mi perfil</button>
                             <button id="btn-logout" *ngIf="isLoggedIn" class="btn btn-light w-100 mb-2" (click)="logout()">Cerrar sesión</button>
                         </li>
