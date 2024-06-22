@@ -6,7 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router'; 
 
-
+/**
+ * @description
+ * Componente de registro de usuarios.
+ * 
+ * Este componente permite a los usuarios registrarse proporcionando la informacion requerida.
+ */
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -17,6 +22,11 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
   registroForm: FormGroup;
 
+  /**
+   * 
+   * @param {FormBuilder} fb -Constructor de formularios reactivos.
+   * @param {Router} router -Servicio de enrutamiento de angular.
+   */
   constructor(private fb: FormBuilder, private router: Router) {
     this.registroForm = this.fb.group({
       nombre_completo: ['', Validators.required],
@@ -29,8 +39,16 @@ export class RegistroComponent implements OnInit {
     }, { validators: this.passwordMatchValidator });
   }
 
+  /**
+   * Inicializa el componente.
+   */
   ngOnInit(): void { }
 
+  /**
+   * Maneja el envio del formulario de registro.
+   * 
+   * Si el formulario es valido, guarda los datos del usuario en el localStorage y redirige a la pagina de login.
+   */
   onSubmit(): void {
     if (this.registroForm.valid) {
       const userData = this.registroForm.value;
@@ -55,12 +73,24 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+  /**
+   * Valida que las contraseñas coincidan.
+   * 
+   * @param {AbstractControl} group -El grupo de controles que conitene las contraseñas.
+   * @returns {Validators | null} -Retorna un objeto de errores de validacion si las contraseñas no coinciden, de lo contrario, null.
+   */
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirm_password')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
+  /**
+   * Valida la edad minima requerida del usuario.
+   * 
+   * @param {number} edadMinima -Edad minima requerida
+   * @returns {(control: AbstractControl): ValidationErrors | null} -Retorna una funcion de validador.
+   */
   edadMinimaValidator(edadMinima: number) {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) return null;
