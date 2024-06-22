@@ -1,0 +1,503 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>sumativa-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">sumativa-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RecuperacionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/recuperacion/recuperacion.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente para recuperar la contraseña de un usuario.</p>
+<p>Este componente permite recuperar la contraseña de un usuario ingresando su email.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-recuperacion</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./recuperacion.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./recuperacion.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mostrarPassword" >mostrarPassword</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/recuperacion/recuperacion.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarPassword"></a>
+                    <span class="name">
+                        <span ><b>mostrarPassword</b></span>
+                        <a href="#mostrarPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mostrarPassword()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/components/recuperacion/recuperacion.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Recupera y muestra la contraseña del usuario basado en el email ingresado.</p>
+<p>Obtiene el email ingresado, busca en la lista de usuarios almacenados localmente
+y muestra la contraseña del usuario si se encuentra.</p>
+<p>Si no se encuentra ningún usuario con el email proporcionado, muestra una alerta.
+Si no hay usuarios almacenados localmente, muestra una alerta indicando que no hay usuarios.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>Este método no retorna ningún valor.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+
+/**
+ * @description
+ * Componente para recuperar la contraseña de un usuario.
+ * 
+ * Este componente permite recuperar la contraseña de un usuario ingresando su email.
+ */
+@Component({
+  selector: &#x27;app-recuperacion&#x27;,
+  standalone: true,
+  imports: [CommonModule,RouterModule],
+  templateUrl: &#x27;./recuperacion.component.html&#x27;,
+  styleUrl: &#x27;./recuperacion.component.scss&#x27;
+})
+export class RecuperacionComponent {
+
+  constructor(){}
+
+   /**
+   * Recupera y muestra la contraseña del usuario basado en el email ingresado.
+   * 
+   * Obtiene el email ingresado, busca en la lista de usuarios almacenados localmente
+   * y muestra la contraseña del usuario si se encuentra.
+   * 
+   * Si no se encuentra ningún usuario con el email proporcionado, muestra una alerta.
+   * Si no hay usuarios almacenados localmente, muestra una alerta indicando que no hay usuarios.
+   * 
+   * @returns {void} - Este método no retorna ningún valor.
+   */
+  mostrarPassword(): void {
+    const email &#x3D; (document.getElementById(&#x27;usuarioEmail&#x27;) as HTMLInputElement).value;
+    const storedUserList &#x3D; localStorage.getItem(&#x27;userList&#x27;);
+
+    if(storedUserList){
+      const usuarios &#x3D; JSON.parse(storedUserList);
+
+      //Buscar usuario por Email
+      const usuario &#x3D; usuarios.find((user: any) &#x3D;&gt; user.email &#x3D;&#x3D;&#x3D; email);
+      if (usuario) {
+        // Mostrar la contraseña en una alerta
+        alert(&#x60;La contraseña del usuario ${usuario.email} es: ${usuario.password}&#x60;);
+      } else {
+        alert(&#x27;No se encontró ningún usuario con el correo electrónico proporcionado.&#x27;);
+      }
+    } else {
+      alert(&#x27;No hay usuarios almacenados.&#x27;);
+    }
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container recovery-container my-auto  mt-4&quot;&gt;
+    &lt;h1 class&#x3D;&quot;text-center mb-4&quot;&gt;Recuperación de contraseña&lt;/h1&gt;
+    &lt;p class&#x3D;&quot;text-center text-dark&quot;&gt;Introduce tu dirección de correo electrónico y te enviaremos un enlace para
+        restablecer tu contraseña.&lt;/p&gt;
+    &lt;form&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;usuarioEmail&quot; class&#x3D;&quot;form-label&quot;&gt;Correo electrónico&lt;/label&gt;
+            &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;usuarioEmail&quot; aria-describedby&#x3D;&quot;emailHelp&quot;
+                placeholder&#x3D;&quot;Ingresa tu correo electrónico&quot;&gt;
+        &lt;/div&gt;
+        &lt;button type&#x3D;&quot;button&quot; id&#x3D;&quot;mostrarPasswordBtn&quot; class&#x3D;&quot;btn btn-primary w-100&quot; (click)&#x3D;&quot;mostrarPassword()&quot;&gt;Mostrar contraseña&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;div class&#x3D;&quot;text-center mt-3&quot;&gt;
+        &lt;a routerLink&#x3D;&quot;/login&quot;&gt;Volver&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;footer class&#x3D;&quot;text-center mt-4&quot;&gt;
+    &lt;p class&#x3D;&quot;fw-bold&quot;&gt;© 2024 XYZGaming. Todos los derechos reservados.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container recovery-container my-auto  mt-4">    <h1 class="text-center mb-4">Recuperación de contraseña</h1>    <p class="text-center text-dark">Introduce tu dirección de correo electrónico y te enviaremos un enlace para        restablecer tu contraseña.</p>    <form>        <div class="mb-3">            <label for="usuarioEmail" class="form-label">Correo electrónico</label>            <input type="email" class="form-control" id="usuarioEmail" aria-describedby="emailHelp"                placeholder="Ingresa tu correo electrónico">        </div>        <button type="button" id="mostrarPasswordBtn" class="btn btn-primary w-100" (click)="mostrarPassword()">Mostrar contraseña</button>    </form>    <div class="text-center mt-3">        <a routerLink="/login">Volver</a>    </div></div><footer class="text-center mt-4">    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p></footer></div>'
+    var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarritoComponent', 'selector': 'app-carrito'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RecuperacionComponent', 'selector': 'app-recuperacion'},{'name': 'RegistroComponent', 'selector': 'app-registro'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RecuperacionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RecuperacionComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
