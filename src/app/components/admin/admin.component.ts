@@ -3,6 +3,13 @@ import { AuthService } from '../services/services.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule} from '@angular/router';
 import { Router } from '@angular/router';
+
+/**
+ * @description
+ * Componente para la pagina de administracion.
+ * 
+ * Este componente muestra la lista de los usuarios almacenado.
+ */
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -16,6 +23,11 @@ export class AdminComponent {
   usuarios: any[] = [];
   constructor(private authService: AuthService,private router: Router) {}
 
+  /**
+   * Metodo que se ejecuta al inicializar el componente.
+   * 
+   * Carga el estado de autenticacion y la lista de usuarios almacenados  en el localStorage.
+   */
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
 
@@ -26,6 +38,12 @@ export class AdminComponent {
     this.cargarUsuarios();
    
   }
+
+  /**
+   * Carga la lista de usuarios desde el localStorage.
+   * 
+   * Si no existen usuarios almacenados, se imprime un mensaje en la consola.
+   */
   cargarUsuarios(): void {
     if (typeof localStorage !== 'undefined') {
       const storedUserList = localStorage.getItem('userList');
@@ -38,9 +56,12 @@ export class AdminComponent {
     } 
   }
 
+  /**
+   * Cierra la sesion del usuario y redirige a la pagina login.
+   */
   logout(): void {
     this.authService.logout();
-    // Redirigir a la página principal
+    // Redirigir a la página login
     this.router.navigate(['/login']).then(() => {
       window.location.reload();
     });
