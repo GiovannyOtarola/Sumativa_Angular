@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+/**
+ * @description
+ * Componente para recuperar la contraseña de un usuario.
+ * 
+ * Este componente permite recuperar la contraseña de un usuario ingresando su email.
+ */
 @Component({
   selector: 'app-recuperacion',
   standalone: true,
@@ -12,6 +19,17 @@ export class RecuperacionComponent {
 
   constructor(){}
 
+   /**
+   * Recupera y muestra la contraseña del usuario basado en el email ingresado.
+   * 
+   * Obtiene el email ingresado, busca en la lista de usuarios almacenados localmente
+   * y muestra la contraseña del usuario si se encuentra.
+   * 
+   * Si no se encuentra ningún usuario con el email proporcionado, muestra una alerta.
+   * Si no hay usuarios almacenados localmente, muestra una alerta indicando que no hay usuarios.
+   * 
+   * @returns {void} - Este método no retorna ningún valor.
+   */
   mostrarPassword(): void {
     const email = (document.getElementById('usuarioEmail') as HTMLInputElement).value;
     const storedUserList = localStorage.getItem('userList');
