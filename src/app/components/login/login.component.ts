@@ -5,6 +5,12 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+/**
+ * @description
+ * Componente de inicio de sesion.
+ * 
+ * Este componente permite al usuario iniciar sesion proporcionando su email y contraseña.
+ */
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -15,6 +21,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class LoginComponent{
   loginForm: FormGroup;
 
+  /**
+   * 
+   * @param {FormBuilder} fb -Constructor de formularios reactivos.
+   * @param {Router} router -Servicio de enrutamiento de angular.
+   */
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -22,6 +33,13 @@ export class LoginComponent{
     });
   }
   
+  /**
+   * Maneja el envio del formuario de inicio de sesion.
+   * 
+   * Si las credenciales son correctas, almacena el estado de la sesion en el localStorage y redirigue a la pagina index que muestra todos los juegos.
+   * 
+   * @returns {void} -no retorna ningun valor.
+   */
   onSubmit(): void {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
