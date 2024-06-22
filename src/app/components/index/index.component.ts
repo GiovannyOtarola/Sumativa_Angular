@@ -9,7 +9,6 @@ import { AuthService } from '../services/services.component';
  * 
  * Este componente almacena los juegos que se mostraran en la pagina principal de la aplicacion
  */
-
 export interface Juego{
   id: String;
   categoria: String;
