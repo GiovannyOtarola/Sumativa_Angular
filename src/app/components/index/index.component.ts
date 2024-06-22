@@ -145,7 +145,7 @@ export class IndexComponent {
   ];
 
   juegosFiltrados: Juego[];
-  tituloPrincipal: String = "Todos los juegos";
+  tituloPrincipal: String = "Todos los Juegos";
   juegosEnCarrito: Juego[] = [];
 
   isLoggedIn = false;

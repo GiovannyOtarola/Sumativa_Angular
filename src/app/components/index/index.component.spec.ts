@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { IndexComponent } from './index.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -8,7 +9,7 @@ describe('IndexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexComponent]
+      imports: [IndexComponent,CommonModule,RouterModule.forRoot([])]
     })
     .compileComponents();
 
