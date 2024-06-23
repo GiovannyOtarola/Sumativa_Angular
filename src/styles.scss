@@ -16,16 +16,6 @@ body {
     min-height: 100%;
 }
 
-.card-body {
-    text-align: left;
-    
-}
-
-.card-img-top {
-    max-height: 200px; /* Ajusta la altura máxima de las imágenes si es necesario */
-    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
-    
-}
 
 main {
     background-color: #7713E9;
@@ -57,9 +47,7 @@ h2 {
 h3 {
     color: white;
 }
-.card-title {
-    color: white; 
-}
+
 
 footer {
     background-color: var(--primary-color);
@@ -95,12 +83,6 @@ footer{
 small{
     color: white;
 }
-
-
-
-
-
-
 
 .logo{
     font-weight: 400px;

@@ -7,8 +7,17 @@ h2 {
     
 }
 
+
+.card-body {
+    text-align: left;
+    
+}
+
 .card-img-top {
     max-height: 200px; /* Ajusta la altura máxima de las imágenes si es necesario */
     object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
     
+}
+.card-title {
+    color: white; 
 }
