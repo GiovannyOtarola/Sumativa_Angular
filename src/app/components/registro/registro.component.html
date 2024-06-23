@@ -1,1 +1,74 @@
-<p>registro works!</p>
+<div class="container customs-container mt-3">
+    <div class="row">
+      <div class="col">
+        <h3 class="text-center display-4 text-dark">Regístrate</h3>
+        <!---Registro-->
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombre-completo" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" id="nombre-completo" formControlName="nombre_completo" placeholder="Ingresa tu Nombre Completo">
+            <div *ngIf="registroForm.get('nombre_completo')?.touched && registroForm.get('nombre_completo')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('nombre_completo')?.errors?.['required']">El nombre completo es obligatorio.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="usuario" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="Ingresa tu Nombre de Usuario">
+            <div *ngIf="registroForm.get('usuario')?.touched && registroForm.get('usuario')?.invalid" class="error-message fw-bold text-danger">
+              <small  *ngIf="registroForm.get('usuario')?.errors?.['required']">El usuario es obligatorio.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Ingresa tu Email">
+            <div *ngIf="registroForm.get('email')?.touched && registroForm.get('email')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('email')?.errors?.['required']">El email es obligatorio.</small>
+              <small *ngIf="registroForm.get('email')?.errors?.['email']">Formato de email inválido.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fecha-nacimiento" formControlName="fecha_nacimiento">
+            <div *ngIf="registroForm.get('fecha_nacimiento')?.touched && registroForm.get('fecha_nacimiento')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('fecha_nacimiento')?.errors?.['required']">La fecha de nacimiento es obligatoria.</small>
+              <small *ngIf="registroForm.get('fecha_nacimiento')?.errors?.['edadMinima']">Debe tener al menos 13 años.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="direccion-despacho" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion-despacho" formControlName="direccion_despacho" placeholder="Ingresa tu Dirección">
+            <div *ngIf="registroForm.get('direccion_despacho')?.touched && registroForm.get('direccion_despacho')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('direccion_despacho')?.errors?.['required']">La dirección de despacho es obligatoria.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Ingresa tu Contraseña">
+            <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+              <small *ngIf="registroForm.get('password')?.errors?.['pattern']">La contraseña debe tener entre 6 y 18 caracteres, al menos una letra mayúscula y un número.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="confirm-password" formControlName="confirm_password" placeholder="Confirma tu Contraseña">
+            <div *ngIf="registroForm.get('confirm_password')?.touched && registroForm.get('confirm_password')?.invalid" class="error-message fw-bold text-danger">
+              <small *ngIf="registroForm.get('confirm_password')?.errors?.['required']">La confirmación de la contraseña es obligatoria.</small>
+              <small *ngIf="registroForm.errors?.['passwordMismatch']">Las contraseñas no coinciden.</small>
+            </div>
+          </div>
+          <div class="mb-3 d-inline-block">
+            <button type="submit" class="btn btn-primary" >Regístrate</button>
+          </div>
+          <div class="mb-3 d-inline-block ms-2">
+            <button type="reset" class="btn btn-primary">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <p class="fw-bold">© 2024 DiversiónEnTablero. Todos los derechos reservados.</p>
+    </div>
+  </footer>

@@ -1,1 +1,36 @@
-<p>perfil works!</p>
+<div class="container custom-container mt-4">
+    <h1 class="text-center">Mi Perfil</h1>
+    <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" formControlName="nombre_completo" id="nombreCompleto" required>
+      </div>
+      <div class="mb-3">
+        <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" formControlName="usuario" id="nombreUsuario" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" formControlName="email" id="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" formControlName="fecha_nacimiento" id="fechaNacimiento" required>
+      </div>
+      <div class="mb-3">
+        <label for="direccionDespacho" class="form-label">Dirección de Despacho</label>
+        <input type="text" class="form-control" formControlName="direccion_despacho" id="direccionDespacho" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" formControlName="password" id="password" required>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button id="btn-volver" type="button" class="btn btn-primary" routerLink="/index">Volver</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>
+  </footer>

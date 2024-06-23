@@ -1,1 +1,21 @@
-<p>recuperacion works!</p>
+<div class="container recovery-container my-auto  mt-4">
+    <h1 class="text-center mb-4">Recuperación de contraseña</h1>
+    <p class="text-center text-dark">Introduce tu dirección de correo electrónico y te enviaremos un enlace para
+        restablecer tu contraseña.</p>
+    <form>
+        <div class="mb-3">
+            <label for="usuarioEmail" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="usuarioEmail" aria-describedby="emailHelp"
+                placeholder="Ingresa tu correo electrónico">
+        </div>
+        <button type="button" id="mostrarPasswordBtn" class="btn btn-primary w-100" (click)="mostrarPassword()">Mostrar contraseña</button>
+    </form>
+    <div class="text-center mt-3">
+        <a routerLink="/login">Volver</a>
+    </div>
+</div>
+
+
+<footer class="text-center mt-4">
+    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>
+</footer>

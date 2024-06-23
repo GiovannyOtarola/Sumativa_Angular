@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+ 
+}
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-image: url(assets/images/fondo.png);
+    background: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+
+main {
+    background-color: #7713E9;
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    margin: 20px;
+    top: 20%;
+    border-radius: 25px; /* Redondea los bordes del elemento a 10px */
+}
+
+
+html, body {
+    height: 100%; /* Asegura que el html y el body ocupen el 100% del viewport */
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+    padding: 0; /* Elimina el relleno predeterminado del cuerpo */
+}
+
+footer p{
+    color: white;
+}
+
+p {
+    color: white;
+}
+h2 {
+    color: white;
+}
+h3 {
+    color: white;
+}
+
+
+footer {
+    background-color: var(--primary-color);
+    color: black;
+    text-align: center;
+    padding: 0.5em;
+    width: 100%;
+}
+
+html{
+    height: 100X;
+}
+
+footer{
+    margin-top: auto;
+}
+.navbar-toggler.custom-toggler {
+    border-color: white;
+}
+
+.navbar-toggler.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.numero{
+    color: white;
+}
+
+.disabled{
+    display: none;
+}
+
+small{
+    color: white;
+}
+
+.logo{
+    font-weight: 400px;
+}
+

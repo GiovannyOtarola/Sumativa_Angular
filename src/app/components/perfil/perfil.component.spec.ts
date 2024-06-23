@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CommonModule } from '@angular/common';
 import { PerfilComponent } from './perfil.component';
+import { RouterModule } from '@angular/router';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -8,7 +9,8 @@ describe('PerfilComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PerfilComponent]
+      imports: [PerfilComponent,CommonModule,
+        RouterModule.forRoot([])]
     })
     .compileComponents();
 
