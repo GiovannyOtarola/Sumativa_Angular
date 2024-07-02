@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router'; 
-
+import { UsuariosService } from '../services/usuarios.service';
+import { HttpClientModule } from '@angular/common/http';
 /**
  * @description
  * Componente de registro de usuarios.
@@ -15,9 +16,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.scss'
+  styleUrl: './registro.component.scss',
+  providers: [UsuariosService]
 })
 export class RegistroComponent implements OnInit {
   registroForm: FormGroup;
@@ -27,7 +29,7 @@ export class RegistroComponent implements OnInit {
    * @param {FormBuilder} fb -Constructor de formularios reactivos.
    * @param {Router} router -Servicio de enrutamiento de angular.
    */
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router,private usuariosService: UsuariosService) {
     this.registroForm = this.fb.group({
       nombre_completo: ['', Validators.required],
       usuario: ['', Validators.required],
@@ -53,20 +55,28 @@ export class RegistroComponent implements OnInit {
     if (this.registroForm.valid) {
       const userData = this.registroForm.value;
 
-      // Obtener la lista de usuarios desde localStorage
-      const storedUsers = localStorage.getItem('userList');
-      const userList = storedUsers ? JSON.parse(storedUsers) : [];
+      // Obtener la lista de usuarios desde el JSON usando JsonService
+      this.usuariosService.getJsonData().subscribe(
+        listaUsuarios => {
+          listaUsuarios = listaUsuarios ? listaUsuarios : [];// Manejar caso de lista vacía
 
-      // Agregar el nuevo usuario a la lista
-      userList.push(userData);
+          // Agregar el nuevo usuario a la lista
+          listaUsuarios.push(userData);
 
-      // Guardar la lista actualizada de vuelta en localStorage
-      localStorage.setItem('userList', JSON.stringify(userList));
+          // Guardar la lista actualizada en el JSON
+          this.usuariosService.MetodoUsuario(listaUsuarios);
 
-      console.log('Datos guardados:', userList);
+          console.log('Datos guardados en JSON:', listaUsuarios);
+          
+          // Redirigir a la página de login
+          this.router.navigate(['/login']);
+        },
+        error => {
+          console.error('Error al obtener los datos de usuario',error);
 
-      // Redirigir a la página de login
-      this.router.navigate(['/login']);
+        }
+      );
+
     } else {
       // Mostrar mensajes de error
       this.registroForm.markAllAsTouched();

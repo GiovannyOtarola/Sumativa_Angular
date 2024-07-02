@@ -1,0 +1,20 @@
+[
+    {
+       "nombre_completo":"gio otarola",
+       "usuario":"gio",
+       "email":"gio@gmail.com",
+       "fecha_nacimiento":"1997-06-19",
+       "direccion_despacho":"La florida 1231",
+       "password":"Gio123",
+       "confirm_password":"Gio123"
+    },
+    {
+       "nombre_completo":"giovanny Otarola",
+       "usuario":"gios",
+       "email":"gios@gmail.com",
+       "fecha_nacimiento":"1996-03-22",
+       "direccion_despacho":"La florida 12111",
+       "password":"Gios123",
+       "confirm_password":"Gios123"
+    }
+ ]

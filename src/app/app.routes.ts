@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RecuperacionComponent } from './components/recuperacion/recuperacion.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
     //esto indica cual es la primera pagina que se debe inicar junto con la app

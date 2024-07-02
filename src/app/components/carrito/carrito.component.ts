@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Juego } from '../index/index.component';
-import { AuthService } from '../services/services.component';
+import { CarritoService } from '../services/carrito.service';
 
 /**
  * @description
@@ -22,14 +22,20 @@ export class CarritoComponent {
   juegosEnCarrito: Juego[] = [];
   isLoggedIn = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private carritoService: CarritoService) { }
 
   /**
    * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el localStorage
    */
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isAuthenticated();
-    this.cargarCarritoDesdeLocalStorage();
+    this.carritoService.getCarrito().subscribe(
+      (carrito: Juego[]) => {
+        this.juegosEnCarrito = carrito;
+      },
+      (error) => {
+        console.error('Error al cargar el carrito', error);
+      }
+    );
   }
 
   /**
@@ -37,19 +43,14 @@ export class CarritoComponent {
    * @param {Juego} juego -El juego que sera eliminado del carrito.
    */
   eliminarDelCarrito(juego: Juego): void {
-    const index = this.juegosEnCarrito.findIndex(j => j.id === juego.id);
-    if (index !== -1) {
-      this.juegosEnCarrito.splice(index, 1);
-      this.guardarCarritoEnLocalStorage();
-    }
+    this.carritoService.eliminarJuego(juego);
   }
 
   /**
    * Vacia todo el carrito.
    */
   vaciarCarrito(): void {
-    this.juegosEnCarrito = [];
-    this.guardarCarritoEnLocalStorage();
+    this.carritoService.vaciarCarrito();
   }
 
   /**
@@ -64,29 +65,12 @@ export class CarritoComponent {
   /**
    * Realiza la compra de los juegos en el carrito y vacia el carrito.
    */
-  comprar(): void {    
+  comprar(): void {
     alert('¡Compra realizada con éxito!');
     this.vaciarCarrito();
   }
 
-  /**
-   * Carga el carrito desde el locarStorage
-   */
-  cargarCarritoDesdeLocalStorage(): void {
-    if (typeof localStorage !== 'undefined') {
-      const juegosEnCarritoLS = localStorage.getItem('juegos-en-carrito');
-      this.juegosEnCarrito = juegosEnCarritoLS ? JSON.parse(juegosEnCarritoLS) : [];
-    }
-  }
-
-  /**
-   * Guarda el estado actual del carrito en el localStorage.
-   */
-  guardarCarritoEnLocalStorage(): void {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('juegos-en-carrito', JSON.stringify(this.juegosEnCarrito));
-    }
-  }
+  
 
   
 }
