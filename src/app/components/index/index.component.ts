@@ -35,7 +35,7 @@ export class IndexComponent {
   juegosFiltrados: Juego[] = [];
   tituloPrincipal: String = "Todos los Juegos";
   juegosEnCarrito: Juego[] = [];
-
+  numeroCarrito: number = 0;
   isLoggedIn = false;
 
   constructor(private juegosService: JuegosService, private sessionService: SessionService, private carritoService: CarritoService) {}
@@ -46,6 +46,11 @@ export class IndexComponent {
 ngOnInit(): void {
   this.cargarJuegos();
   this.isLoggedIn = this.sessionService.getSessionStatus();
+   // Suscripción para escuchar cambios en el carrito
+   this.carritoService.getCarrito().subscribe(carrito => {
+    this.juegosEnCarrito = carrito;
+    this.actualizarNumeroCarrito(); // Actualizar el número visible en el HTML
+  });
 }
 
 cargarJuegos(): void {
@@ -84,35 +89,25 @@ cargarJuegos(): void {
    */
 
   agregarAlCarrito(juego: Juego): void {
-    this.carritoService.agregarJuego(juego);
+    const juegoEnCarrito = this.carritoService.getCarritoValue().find(j => j.id === juego.id);
+  
+    if (juegoEnCarrito) {
+      // Si el juego ya está en el carrito, incrementar la cantidad
+      this.carritoService.incrementarCantidad(juegoEnCarrito);
+    } else {
+      // Si el juego no está en el carrito, agregarlo con cantidad 1
+      this.carritoService.agregarJuego({ ...juego, cantidad: 1 });
+    }
   }
   /**
    * Actualiza el numero de juegos en el carrito que se muestra en el html del componente.
    */
   actualizarNumeroCarrito(): void {
     let nuevoNumero = this.juegosEnCarrito.reduce((acc, juego) => acc + (juego.cantidad || 0), 0);
-    document.getElementById('numcarrito')!.innerText = `${nuevoNumero}`;
+    this.numeroCarrito = nuevoNumero; // Asignar el nuevo número a una propiedad del componente
   }
 
-  /**
-   * Guarda el estado actual del carrito en el localStorage
-   */
-  guardarCarritoEnLocalStorage(): void {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('juegos-en-carrito', JSON.stringify(this.juegosEnCarrito));
-    }
-  }
 
-  /**
-   * Carga el estado del carrito desde el localStorage.
-   */
-  cargarCarritoDesdeLocalStorage(): void {
-    if (typeof localStorage !== 'undefined') {
-      const juegosEnCarritoLS = localStorage.getItem('juegos-en-carrito');
-      this.juegosEnCarrito = juegosEnCarritoLS ? JSON.parse(juegosEnCarritoLS) : [];
-      this.actualizarNumeroCarrito();
-    }
-  }
 
   /**
    * Cierra la sesion del usuario.

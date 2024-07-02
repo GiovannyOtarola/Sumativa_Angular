@@ -4,8 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router'; 
-
-/**
+import { UsuariosService } from '../services/usuarios.service';
+import { SessionService } from '../services/session.service';
+import { HttpClientModule } from '@angular/common/http';/**
  * @description
  * Componente para gestionar perfil del usuario.
  * 
@@ -14,14 +15,21 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule,RouterModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,ReactiveFormsModule,HttpClientModule],
   templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.scss'
+  styleUrl: './perfil.component.scss',
+  providers: [UsuariosService]
 })
 export class PerfilComponent {
   perfilForm: FormGroup;
+  loggedInUser: any = null;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private usuariosService: UsuariosService,
+    private sessionService: SessionService
+  ) {
     this.perfilForm = this.fb.group({
       nombre_completo: ['', Validators.required],
       usuario: ['', Validators.required],
@@ -32,90 +40,41 @@ export class PerfilComponent {
     });
   }
 
-  /**
-   * Metodo que se ejecuta al inicializar el componente.
-   * 
-   * Carga los datos del usuario actualmente logueado y los muestra en el formulario de perfil.
-   */
   ngOnInit(): void {
-    this.cargarDatosUsuario();
+    this.loadLoggedInUser();
   }
 
-  /**
-   * Verifica si el localStorage esta disponible en el navegador.
-   * 
-   * @returns {boolean} - Devuelve `true` si el localStorage está disponible, `false` en caso contrario.
-   */
-  private isLocalStorageAvailable(): boolean {
-    try {
-      const testKey = '__localStorageTest__';
-      localStorage.setItem(testKey, testKey);
-      localStorage.removeItem(testKey);
-      return true;
-      } catch (e) {
-        return false;
-      }
+  loadLoggedInUser(): void {
+    this.loggedInUser = this.sessionService.getLoggedInUser();
+    if (this.loggedInUser) {
+      this.perfilForm.patchValue(this.loggedInUser);
+    } else {
+      console.error('No se pudo cargar el usuario logueado');
     }
-  
-  /**
-   * Carga los datos del usuario logueado desde el localStorage y los muestra en el formulario.
-   * 
-   * Si no encuentra datos del usuario en localStorage, no hace nada.
-   */
-    cargarDatosUsuario(): void {
-      if (this.isLocalStorageAvailable()) {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-          const storedUserList = localStorage.getItem('userList');
-          if (storedUserList) {
-            const userList = JSON.parse(storedUserList);
-            const user = userList.find((u: any) => u.email === JSON.parse(loggedInUser).email);
-            if (user) {
-              this.perfilForm.patchValue(user);
-            }
-          }
+  }
+
+  onSubmit(): void {
+    if (this.perfilForm.valid) {
+      const updatedUser = this.perfilForm.value;
+      this.usuariosService.actualizarUsuario(updatedUser).subscribe(
+        response => {
+          console.log('Datos actualizados:', response);
+          this.sessionService.login(updatedUser); // Actualizar usuario logueado en sesión
+          alert('Datos actualizados correctamente');
+        },
+        error => {
+          console.error('Error al actualizar los datos:', error);
+          alert('Error al actualizar los datos');
         }
-      } 
+      );
+    } else {
+      this.perfilForm.markAllAsTouched();
     }
+  }
+
+  logout(): void {
+    this.sessionService.logout();
+    this.router.navigate(['/login']);
+  }
   
-  /**
-   * Metodo que se ejecuta al enviar el formulario de perfil.
-   * 
-   * Valida el formulario y actualiza los datos del usuario en localStorage si el formulario es valido.
-   * Muestra una alerta con el resultado de la actualizacion.
-   */
-    onSubmit(): void {
-      if (this.perfilForm.valid) {
-        const updatedUser = this.perfilForm.value;
-        if (this.isLocalStorageAvailable()) {
-          const storedUserList = localStorage.getItem('userList');
-          if (storedUserList) {
-            let userList = JSON.parse(storedUserList);
-            const userIndex = userList.findIndex((u: any) => u.email === updatedUser.email);
-            if (userIndex !== -1) {
-              // Actualizar la información del usuario en la lista
-              userList[userIndex] = updatedUser;
-  
-              // Guardar la lista actualizada en localStorage
-              localStorage.setItem('userList', JSON.stringify(userList));
-  
-              // Actualizar la información del usuario logueado en localStorage
-              localStorage.setItem('loggedInUser', JSON.stringify({
-                email: updatedUser.email,
-                nombre_completo: updatedUser.nombre_completo
-              }));
-  
-              console.log('Datos actualizados:', updatedUser);
-              alert('Datos actualizados correctamente');
-            } else {
-              console.error('Usuario no encontrado en la lista');
-            }
-          } else {
-            console.error('No se encontraron datos de usuario almacenados');
-          }
-        } 
-      } else {
-        this.perfilForm.markAllAsTouched();
-      }
-    }
 }

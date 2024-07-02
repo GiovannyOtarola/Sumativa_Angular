@@ -43,4 +43,20 @@ import { Observable, map } from "rxjs";
         })
       );
     }
+
+    actualizarUsuario(usuario: any): Observable<any> {
+      
+      return this.http.put(this.jsonUrl, usuario, this.httpOptions);
+    }
+
+    getUsuarios(): Observable<any[]> {
+      return this.http.get<any[]>(this.jsonUrl);
+    }
+  
+    buscarUsuarioPorEmail(email: string): Observable<any> {
+      return this.getUsuarios().pipe(
+        map((userList: any[]) => userList.find(user => user.email === email))
+      );
+    }
+
   }

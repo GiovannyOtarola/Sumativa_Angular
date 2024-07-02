@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Juego } from '../index/index.component';
 import { CarritoService } from '../services/carrito.service';
-
+import { IndexComponent } from '../index/index.component';
 /**
  * @description
  * Componente que maneja el carrito de compras.
@@ -28,6 +28,7 @@ export class CarritoComponent {
    * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el localStorage
    */
   ngOnInit(): void {
+    this.actualizarNumeroCarrito();
     this.carritoService.getCarrito().subscribe(
       (carrito: Juego[]) => {
         this.juegosEnCarrito = carrito;
@@ -37,6 +38,13 @@ export class CarritoComponent {
       }
     );
   }
+  actualizarNumeroCarrito(): void {
+    // Lógica para actualizar el número del carrito, por ejemplo:
+    this.carritoService.getCarrito().subscribe(carrito => {
+      const nuevoNumero = carrito.length; // Obtener la longitud del carrito
+      
+    });
+  }
 
   /**
    * Elimina un juego del carrito
@@ -44,6 +52,7 @@ export class CarritoComponent {
    */
   eliminarDelCarrito(juego: Juego): void {
     this.carritoService.eliminarJuego(juego);
+    this.actualizarNumeroCarrito(); // Asegurar actualización inmediata
   }
 
   /**

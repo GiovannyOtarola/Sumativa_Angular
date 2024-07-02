@@ -15,17 +15,20 @@ export class CarritoService {
     return this.carritoSubject.asObservable();
   }
 
+  getCarritoValue() {
+    return this.carritoSubject.getValue();
+  }
+  
   agregarJuego(juego: Juego) {
-    const juegoEnCarrito = this.carrito.find(j => j.id === juego.id);
-
-    if (juegoEnCarrito) {
-      juegoEnCarrito.cantidad = (juegoEnCarrito.cantidad || 0) + 1;
-    } else {
-      this.carrito.push({ ...juego, cantidad: 1 });
-    }
-
+    this.carrito.push(juego);
     this.carritoSubject.next(this.carrito);
   }
+
+  incrementarCantidad(juego: Juego) {
+    juego.cantidad = (juego.cantidad || 0) + 1;
+    this.carritoSubject.next(this.carrito);
+  }
+
 
   eliminarJuego(juego: Juego) {
     const index = this.carrito.findIndex(j => j.id === juego.id);
