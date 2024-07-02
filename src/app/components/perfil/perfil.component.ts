@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';/**
 export class PerfilComponent {
   perfilForm: FormGroup;
   loggedInUser: any = null;
-
+  usuarios: any[] = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -42,6 +42,19 @@ export class PerfilComponent {
 
   ngOnInit(): void {
     this.loadLoggedInUser();
+    this.loadUsuarios();
+  }
+
+  loadUsuarios(): void {
+    this.usuariosService.getJsonData().subscribe(
+      (usuarios: any[]) => {
+        this.usuarios = usuarios;
+        console.log('Usuarios cargados:', this.usuarios); // Verifica los usuarios cargados
+      },
+      error => {
+        console.error('Error al cargar usuarios:', error);
+      }
+    );
   }
 
   loadLoggedInUser(): void {
@@ -52,29 +65,48 @@ export class PerfilComponent {
       console.error('No se pudo cargar el usuario logueado');
     }
   }
-
-  onSubmit(): void {
+  modificar(usuario: any): void {
     if (this.perfilForm.valid) {
-      const updatedUser = this.perfilForm.value;
-      this.usuariosService.actualizarUsuario(updatedUser).subscribe(
-        response => {
-          console.log('Datos actualizados:', response);
-          this.sessionService.login(updatedUser); // Actualizar usuario logueado en sesión
-          alert('Datos actualizados correctamente');
-        },
-        error => {
-          console.error('Error al actualizar los datos:', error);
-          alert('Error al actualizar los datos');
-        }
-      );
+      const email = usuario.email;
+      const index = this.usuarios.findIndex((elemento: any) => elemento.email === email);
+  
+      console.log('Email del usuario:', email);
+      console.log('Índice encontrado:', index);
+      console.log('Usuarios actuales:', this.usuarios); 
+  
+      if (index !== -1) {
+        this.usuarios[index].nombre_completo = this.perfilForm.get('nombre_completo')?.value;
+        this.usuarios[index].usuario = this.perfilForm.get('usuario')?.value;
+        this.usuarios[index].email = this.perfilForm.get('email')?.value;
+        this.usuarios[index].fecha_nacimiento = this.perfilForm.get('fecha_nacimiento')?.value;
+        this.usuarios[index].direccion_despacho = this.perfilForm.get('direccion_despacho')?.value;
+        this.usuarios[index].password = this.perfilForm.get('password')?.value;
+  
+        this.usuariosService.actualizarUsuario(this.usuarios[index]).subscribe(
+          response => {
+            console.log('Datos actualizados:', response);
+            alert('Datos actualizados correctamente');
+          },
+          error => {
+            console.error('Error al actualizar los datos:', error);
+            alert('Error al actualizar los datos');
+          }
+        );
+  
+      } else {
+        window.alert('El elemento de la lista no existe');
+      }
     } else {
       this.perfilForm.markAllAsTouched();
     }
   }
 
-  logout(): void {
-    this.sessionService.logout();
-    this.router.navigate(['/login']);
+  onSubmit(): void {
+    if (this.perfilForm.valid) {
+      this.modificar(this.loggedInUser);
+    } else {
+      this.perfilForm.markAllAsTouched();
+    }
   }
   
 }

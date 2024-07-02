@@ -50,6 +50,17 @@ export class AdminComponent {
     );
   }
 
+  eliminar(usuario: any): void {
+    const index = this.usuarios.findIndex((elemento: any) => elemento.id === usuario.id);
+    
+    if (index !== -1) {
+      this.usuarios.splice(index, 1);
+      this.usuariosService.MetodoUsuario(this.usuarios);
+    } else {
+      window.alert('El elemento de la lista no existe');
+    }
+  }
+
   /**
    * Cierra la sesion del usuario y redirige a la pagina login.
    */

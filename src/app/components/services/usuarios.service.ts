@@ -11,11 +11,11 @@ import { Observable, map } from "rxjs";
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer c71c2e5d-5259-4b49-ae77-a8963f965bf2'
+            'Authorization': 'Bearer d31062ce-ceb3-4a40-8d64-bede53347e93'
         })
     }
 
-    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=c71c2e5d-5259-4b49-ae77-a8963f965bf2';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=d31062ce-ceb3-4a40-8d64-bede53347e93';
 
     
 
@@ -45,8 +45,8 @@ import { Observable, map } from "rxjs";
     }
 
     actualizarUsuario(usuario: any): Observable<any> {
-      
-      return this.http.put(this.jsonUrl, usuario, this.httpOptions);
+      const url = `${this.jsonUrl}/${usuario.email}.json`;
+      return this.http.put(url, usuario);
     }
 
     getUsuarios(): Observable<any[]> {
@@ -58,5 +58,8 @@ import { Observable, map } from "rxjs";
         map((userList: any[]) => userList.find(user => user.email === email))
       );
     }
+
+   
+   
 
   }
