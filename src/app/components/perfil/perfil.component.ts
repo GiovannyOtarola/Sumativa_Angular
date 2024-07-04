@@ -82,16 +82,8 @@ export class PerfilComponent {
         this.usuarios[index].direccion_despacho = this.perfilForm.get('direccion_despacho')?.value;
         this.usuarios[index].password = this.perfilForm.get('password')?.value;
   
-        this.usuariosService.actualizarUsuario(this.usuarios[index]).subscribe(
-          response => {
-            console.log('Datos actualizados:', response);
-            alert('Datos actualizados correctamente');
-          },
-          error => {
-            console.error('Error al actualizar los datos:', error);
-            alert('Error al actualizar los datos');
-          }
-        );
+        this.usuariosService.MetodoUsuario(this.usuarios);
+        this.sessionService.login(this.usuarios[index]);
   
       } else {
         window.alert('El elemento de la lista no existe');
