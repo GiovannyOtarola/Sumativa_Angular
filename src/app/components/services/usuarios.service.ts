@@ -11,11 +11,11 @@ import { Observable, map } from "rxjs";
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer d99d537d-4256-4db2-85fb-945415dafc7c'
+            'Authorization': 'Bearer b2f43f6e-a162-4932-b558-903c0063821b'
         })
     }
 
-    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=d99d537d-4256-4db2-85fb-945415dafc7c';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=b2f43f6e-a162-4932-b558-903c0063821b';
 
     
 
@@ -44,10 +44,7 @@ import { Observable, map } from "rxjs";
       );
     }
 
-    actualizarUsuario(usuario: any): Observable<any> {
-      const url = `${this.jsonUrl}/${usuario.email}.json`;
-      return this.http.put(url, usuario);
-    }
+   
 
     getUsuarios(): Observable<any[]> {
       return this.http.get<any[]>(this.jsonUrl);
@@ -60,6 +57,10 @@ import { Observable, map } from "rxjs";
     }
 
    
-   
+  // Actualizar el rol de un usuario por email
+  actualizarRolUsuarioPorEmail(email: string, nuevoRol: string): Observable<any> {
+    const url = `${this.jsonUrl}/email/${email}/rol`;
+    return this.http.post<any>(url, { rol: nuevoRol });
+  }
 
   }
