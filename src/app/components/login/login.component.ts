@@ -47,39 +47,32 @@ export class LoginComponent{
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
 
-      // Verificar si las credenciales son del administrador
-      if (formData.email === 'admin@gmail.com' && formData.password === 'Admin1234') {
-        console.log('Inicio de sesión exitoso para el administrador');
-        alert('Inicio de sesión exitoso para el administrador');
-
-         // Establecer la sesión
-         this.sessionService.login({ email: formData.email, nombre_completo: 'Administrador' });
-
-        // Redirigir al componente de administración
-        this.router.navigate(['/admin']);
-        return;
-      }
-      
-       // Verificar las credenciales de usuario normal
-       this.usuariosService.authenticateUser(formData.email, formData.password).subscribe(
+      // Autenticar al usuario usando el servicio UsuariosService
+      this.usuariosService.authenticateUser(formData.email, formData.password).subscribe(
         matchedUser => {
           if (matchedUser) {
             console.log('Inicio de sesión exitoso');
-            alert('Inicio de sesión exitoso');
 
             // Establecer la sesión
             this.sessionService.login(matchedUser);
 
-            // Redirigir a la página principalss
-            this.router.navigate(['/index']);
+            // Redirigir según el rol del usuario
+            if (matchedUser.rol === 'admin') {
+              this.router.navigate(['/admin']);
+            } else if (matchedUser.rol === 'usuario') {
+              this.router.navigate(['/index']);
+            } else {
+              console.error('Rol desconocido');
+              alert('No se puede determinar el rol del usuario');
+            }
           } else {
             console.error('Correo o contraseña incorrectos');
             alert('Correo o contraseña incorrectos');
           }
         },
         error => {
-          console.error('Error al obtener los datos de usuario', error);
-          alert('Error al obtener los datos de usuario');
+          console.error('Error al autenticar usuario', error);
+          alert('Error al autenticar usuario');
         }
       );
 

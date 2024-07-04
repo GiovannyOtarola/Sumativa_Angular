@@ -11,11 +11,11 @@ import { Observable, map } from "rxjs";
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer d31062ce-ceb3-4a40-8d64-bede53347e93'
+            'Authorization': 'Bearer d99d537d-4256-4db2-85fb-945415dafc7c'
         })
     }
 
-    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=d31062ce-ceb3-4a40-8d64-bede53347e93';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=d99d537d-4256-4db2-85fb-945415dafc7c';
 
     
 

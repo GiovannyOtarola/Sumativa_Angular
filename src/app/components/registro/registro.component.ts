@@ -53,7 +53,8 @@ export class RegistroComponent implements OnInit {
    */
   onSubmit(): void {
     if (this.registroForm.valid) {
-      const userData = this.registroForm.value;
+      const userData = { ...this.registroForm.value, rol: 'usuario' };
+
 
       // Obtener la lista de usuarios desde el JSON usando JsonService
       this.usuariosService.getJsonData().subscribe(

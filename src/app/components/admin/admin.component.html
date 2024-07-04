@@ -26,6 +26,7 @@
             <th>Dirección</th>
             <th>Fecha Nacimiento</th>
             <th>Password</th>
+            <th>Rol</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -37,6 +38,7 @@
             <td>{{ usuario.direccion_despacho }}</td>
             <td>{{ usuario.fecha_nacimiento }}</td>
             <td>{{ usuario.password }}</td>
+            <td>{{ usuario.rol }}</td>
             <td>
               <!-- Botón de eliminar -->
               <button class="btn btn-danger" (click)="eliminar(usuario)">Eliminar</button>
