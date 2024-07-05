@@ -19,7 +19,7 @@ import { Observable, map } from "rxjs";
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer b2f43f6e-a162-4932-b558-903c0063821b'
+            'Authorization': 'Bearer 68432845-8dbc-4dd8-a994-57a8a6312df0'
         })
     }
 
@@ -27,7 +27,7 @@ import { Observable, map } from "rxjs";
     * URL del archivo JSON que contiene los datos de los usuarios.
     * @private
     */
-    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=b2f43f6e-a162-4932-b558-903c0063821b';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/sumativaangular.appspot.com/o/usuarios.json?alt=media&token=68432845-8dbc-4dd8-a994-57a8a6312df0';
 
     
 

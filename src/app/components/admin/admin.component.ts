@@ -65,13 +65,15 @@ export class AdminComponent {
    * @param usuario - El usuario a eliminar
    */
   eliminar(usuario: any): void {
-    const index = this.usuarios.findIndex((elemento: any) => elemento.id === usuario.id);
+    const email = usuario.email; // Obtener el email del usuario a eliminar
+  
+    const index = this.usuarios.findIndex((elemento: any) => elemento.email === email);
     
     if (index !== -1) {
       this.usuarios.splice(index, 1);
       this.usuariosService.MetodoUsuario(this.usuarios);
     } else {
-      window.alert('El elemento de la lista no existe');
+      window.alert('El usuario con el correo electrónico no existe en la lista.');
     }
   }
 
