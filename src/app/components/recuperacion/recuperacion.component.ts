@@ -22,7 +22,9 @@ export class RecuperacionComponent {
 
   constructor(private usuariosService: UsuariosService, private sessionService: SessionService){}
 
- 
+  /**
+   * Muestra la contraseña del usuario correspondiente al email ingresado.
+   */
   mostrarPassword(): void {
     const email = (document.getElementById('usuarioEmail') as HTMLInputElement).value;
 

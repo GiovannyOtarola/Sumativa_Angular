@@ -8,7 +8,7 @@ import { UsuariosService } from '../services/usuarios.service';
  * @description
  * Componente para la pagina de administracion.
  * 
- * Este componente muestra la lista de los usuarios almacenado.
+ * Este componente muestra la lista de los usuarios almacenado y permite eliminar datos de un usuario seleccionado.
  */
 @Component({
   selector: 'app-admin',
@@ -19,8 +19,17 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class AdminComponent {
 
+  /**
+   * Indica si el usuario esta autenticado.
+   */
   isLoggedIn = false;
+
+  /**
+   * Lista de usuarios almacenados.
+   */
   usuarios: any[] = [];
+
+
   constructor(private sessionService: SessionService,private router: Router, private usuariosService: UsuariosService) {}
 
   /**
@@ -35,7 +44,7 @@ export class AdminComponent {
   }
 
   /**
-   * Carga la lista de usuarios desde el localStorage.
+   * Carga la lista de usuarios desde el json.
    * 
    * Si no existen usuarios almacenados, se imprime un mensaje en la consola.
    */
@@ -50,6 +59,11 @@ export class AdminComponent {
     );
   }
 
+  /**
+   * Elimina un usuario de la lista.
+   * 
+   * @param usuario - El usuario a eliminar
+   */
   eliminar(usuario: any): void {
     const index = this.usuarios.findIndex((elemento: any) => elemento.id === usuario.id);
     

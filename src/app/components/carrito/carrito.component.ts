@@ -18,14 +18,20 @@ import { IndexComponent } from '../index/index.component';
   styleUrl: './carrito.component.scss'
 })
 export class CarritoComponent {
- 
+ /**
+  * Lista de juegos en el carrito.
+  */
   juegosEnCarrito: Juego[] = [];
+
+  /**
+   * Indica si el usuario esta autenticado.
+   */
   isLoggedIn = false;
 
   constructor(private carritoService: CarritoService) { }
 
   /**
-   * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el localStorage
+   * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el Servicio encargado de administrar el carrito.
    */
   ngOnInit(): void {
     this.actualizarNumeroCarrito();
@@ -38,6 +44,10 @@ export class CarritoComponent {
       }
     );
   }
+
+  /**
+   * Actualiza el numero de elementos en el carrito.
+   */
   actualizarNumeroCarrito(): void {
     // Lógica para actualizar el número del carrito, por ejemplo:
     this.carritoService.getCarrito().subscribe(carrito => {

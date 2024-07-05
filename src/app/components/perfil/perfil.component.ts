@@ -21,9 +21,21 @@ import { HttpClientModule } from '@angular/common/http';/**
   providers: [UsuariosService]
 })
 export class PerfilComponent {
+  /**
+   * Formulario reactivo para gestionar el perfil del usuario.
+   */
   perfilForm: FormGroup;
+
+  /**
+   * Usuario actualmente logueado.
+   */
   loggedInUser: any = null;
+
+  /**
+   * Lista de usuarios cargados desde el servicio.
+   */
   usuarios: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -40,11 +52,17 @@ export class PerfilComponent {
     });
   }
 
+  /**
+   * Inicializa el componente cargando el usuario logueado y la lista de usuarios.
+   */
   ngOnInit(): void {
     this.loadLoggedInUser();
     this.loadUsuarios();
   }
 
+    /**
+   * Carga la lista de usuarios desde el servicio.
+   */
   loadUsuarios(): void {
     this.usuariosService.getJsonData().subscribe(
       (usuarios: any[]) => {
@@ -57,6 +75,9 @@ export class PerfilComponent {
     );
   }
 
+  /**
+   * Carga los datos del usuario actualmente logueado.
+   */
   loadLoggedInUser(): void {
     this.loggedInUser = this.sessionService.getLoggedInUser();
     if (this.loggedInUser) {
@@ -65,6 +86,12 @@ export class PerfilComponent {
       console.error('No se pudo cargar el usuario logueado');
     }
   }
+
+  /**
+   * Modifica los datos del usuario en la lista de usuarios y actualiza el servicio de usuarios.
+   * 
+   * @param {any} usuario - El usuario a modificar.
+   */
   modificar(usuario: any): void {
     if (this.perfilForm.valid) {
       const email = usuario.email;
@@ -93,6 +120,9 @@ export class PerfilComponent {
     }
   }
 
+   /**
+   * Metodo que se ejecuta al enviar el formulario.
+   */
   onSubmit(): void {
     if (this.perfilForm.valid) {
       this.modificar(this.loggedInUser);

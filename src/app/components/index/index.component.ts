@@ -31,17 +31,36 @@ export interface Juego{
 
 export class IndexComponent {
 
+  /**
+   * Lista de todos los juegos.
+   */
   juegos: Juego[] = [];
+
+  /**
+   * Lista de juegos filtrados segun la categoria seleccionada.
+   */
   juegosFiltrados: Juego[] = [];
+
+  /**
+   * Titulo principal que se muestra en la pagina.
+   */
   tituloPrincipal: String = "Todos los Juegos";
+
+  /**
+   * Lista de juegos en el carrito.
+   */
   juegosEnCarrito: Juego[] = [];
+
+  /**
+   * Numero de juegos en el carrito.
+   */
   numeroCarrito: number = 0;
   isLoggedIn = false;
 
   constructor(private juegosService: JuegosService, private sessionService: SessionService, private carritoService: CarritoService) {}
 
 /**
- * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito desde el localStorage
+ * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito.
  */
 ngOnInit(): void {
   this.cargarJuegos();
@@ -53,6 +72,9 @@ ngOnInit(): void {
   });
 }
 
+/**
+ * Carga la lista de juegos desde el servicio.
+ */
 cargarJuegos(): void {
   this.juegosService.getJsonData().subscribe(
     (data: Juego[]) => {

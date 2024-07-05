@@ -39,7 +39,7 @@ export class LoginComponent{
   /**
    * Maneja el envio del formuario de inicio de sesion.
    * 
-   * Si las credenciales son correctas, almacena el estado de la sesion en el localStorage y redirigue a la pagina index que muestra todos los juegos.
+   * Si las credenciales son correctas, almacena el estado de la sesion en el servicio y redirigue a la pagina index que muestra todos los juegos.
    * 
    * @returns {void} -no retorna ningun valor.
    */

@@ -49,7 +49,7 @@ export class RegistroComponent implements OnInit {
   /**
    * Maneja el envio del formulario de registro.
    * 
-   * Si el formulario es valido, guarda los datos del usuario en el localStorage y redirige a la pagina de login.
+   * Si el formulario es valido, guarda los datos del usuario en el json y redirige a la pagina de login.
    */
   onSubmit(): void {
     if (this.registroForm.valid) {
@@ -60,7 +60,7 @@ export class RegistroComponent implements OnInit {
       this.usuariosService.getJsonData().subscribe(
         listaUsuarios => {
           if (!Array.isArray(listaUsuarios)) {
-            listaUsuarios = []; // Asegurarse de que listaUsuarios sea un array
+            listaUsuarios = []; 
           }
 
           // Agregar el nuevo usuario a la lista
