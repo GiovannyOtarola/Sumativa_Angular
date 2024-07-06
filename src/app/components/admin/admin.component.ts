@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/services.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule} from '@angular/router';
 import { Router } from '@angular/router';
-
+import { SessionService } from '../services/session.service';
+import { UsuariosService } from '../services/usuarios.service';
 /**
  * @description
  * Componente para la pagina de administracion.
  * 
- * Este componente muestra la lista de los usuarios almacenado.
+ * Este componente muestra la lista de los usuarios almacenado y permite eliminar datos de un usuario seleccionado.
  */
 @Component({
   selector: 'app-admin',
@@ -19,9 +19,18 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent {
 
+  /**
+   * Indica si el usuario esta autenticado.
+   */
   isLoggedIn = false;
+
+  /**
+   * Lista de usuarios almacenados.
+   */
   usuarios: any[] = [];
-  constructor(private authService: AuthService,private router: Router) {}
+
+
+  constructor(private sessionService: SessionService,private router: Router, private usuariosService: UsuariosService) {}
 
   /**
    * Metodo que se ejecuta al inicializar el componente.
@@ -29,38 +38,50 @@ export class AdminComponent {
    * Carga el estado de autenticacion y la lista de usuarios almacenados  en el localStorage.
    */
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isAuthenticated();
-
-    this.authService.getAuthState().subscribe((isAuthenticated) => {
-      this.isLoggedIn = isAuthenticated;
-    });
-
+    this.isLoggedIn = this.sessionService.getSessionStatus();
+  
     this.cargarUsuarios();
-   
   }
 
   /**
-   * Carga la lista de usuarios desde el localStorage.
+   * Carga la lista de usuarios desde el json.
    * 
    * Si no existen usuarios almacenados, se imprime un mensaje en la consola.
    */
   cargarUsuarios(): void {
-    if (typeof localStorage !== 'undefined') {
-      const storedUserList = localStorage.getItem('userList');
-      if (storedUserList) {
-        this.usuarios = JSON.parse(storedUserList);
-      } else {
-        console.log('No hay usuarios almacenados en localStorage.');
-        // Puedes manejar el caso donde no hay usuarios, por ejemplo, redireccionando o mostrando un mensaje adecuado
+    this.usuariosService.getJsonData().subscribe(
+      (data: any[]) => {
+        this.usuarios = data;
+      },
+      error => {
+        console.error('Error al cargar los usuarios', error);
       }
-    } 
+    );
+  }
+
+  /**
+   * Elimina un usuario de la lista.
+   * 
+   * @param usuario - El usuario a eliminar
+   */
+  eliminar(usuario: any): void {
+    const email = usuario.email; // Obtener el email del usuario a eliminar
+  
+    const index = this.usuarios.findIndex((elemento: any) => elemento.email === email);
+    
+    if (index !== -1) {
+      this.usuarios.splice(index, 1);
+      this.usuariosService.MetodoUsuario(this.usuarios);
+    } else {
+      window.alert('El usuario con el correo electrónico no existe en la lista.');
+    }
   }
 
   /**
    * Cierra la sesion del usuario y redirige a la pagina login.
    */
   logout(): void {
-    this.authService.logout();
+    this.sessionService.logout();
     // Redirigir a la página login
     this.router.navigate(['/login']).then(() => {
       window.location.reload();

@@ -4,8 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router'; 
-
-/**
+import { UsuariosService } from '../services/usuarios.service';
+import { SessionService } from '../services/session.service';
+import { HttpClientModule } from '@angular/common/http';/**
  * @description
  * Componente para gestionar perfil del usuario.
  * 
@@ -14,14 +15,33 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule,RouterModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,ReactiveFormsModule,HttpClientModule],
   templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.scss'
+  styleUrl: './perfil.component.scss',
+  providers: [UsuariosService]
 })
 export class PerfilComponent {
+  /**
+   * Formulario reactivo para gestionar el perfil del usuario.
+   */
   perfilForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  /**
+   * Usuario actualmente logueado.
+   */
+  loggedInUser: any = null;
+
+  /**
+   * Lista de usuarios cargados desde el servicio.
+   */
+  usuarios: any[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private usuariosService: UsuariosService,
+    private sessionService: SessionService
+  ) {
     this.perfilForm = this.fb.group({
       nombre_completo: ['', Validators.required],
       usuario: ['', Validators.required],
@@ -33,89 +53,82 @@ export class PerfilComponent {
   }
 
   /**
-   * Metodo que se ejecuta al inicializar el componente.
-   * 
-   * Carga los datos del usuario actualmente logueado y los muestra en el formulario de perfil.
+   * Inicializa el componente cargando el usuario logueado y la lista de usuarios.
    */
   ngOnInit(): void {
-    this.cargarDatosUsuario();
+    this.loadLoggedInUser();
+    this.loadUsuarios();
+  }
+
+    /**
+   * Carga la lista de usuarios desde el servicio.
+   */
+  loadUsuarios(): void {
+    this.usuariosService.getJsonData().subscribe(
+      (usuarios: any[]) => {
+        this.usuarios = usuarios;
+        console.log('Usuarios cargados:', this.usuarios); // Verifica los usuarios cargados
+      },
+      error => {
+        console.error('Error al cargar usuarios:', error);
+      }
+    );
   }
 
   /**
-   * Verifica si el localStorage esta disponible en el navegador.
-   * 
-   * @returns {boolean} - Devuelve `true` si el localStorage está disponible, `false` en caso contrario.
+   * Carga los datos del usuario actualmente logueado.
    */
-  private isLocalStorageAvailable(): boolean {
-    try {
-      const testKey = '__localStorageTest__';
-      localStorage.setItem(testKey, testKey);
-      localStorage.removeItem(testKey);
-      return true;
-      } catch (e) {
-        return false;
-      }
+  loadLoggedInUser(): void {
+    this.loggedInUser = this.sessionService.getLoggedInUser();
+    if (this.loggedInUser) {
+      this.perfilForm.patchValue(this.loggedInUser);
+    } else {
+      console.error('No se pudo cargar el usuario logueado');
     }
-  
+  }
+
   /**
-   * Carga los datos del usuario logueado desde el localStorage y los muestra en el formulario.
+   * Modifica los datos del usuario en la lista de usuarios y actualiza el servicio de usuarios.
    * 
-   * Si no encuentra datos del usuario en localStorage, no hace nada.
+   * @param {any} usuario - El usuario a modificar.
    */
-    cargarDatosUsuario(): void {
-      if (this.isLocalStorageAvailable()) {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-          const storedUserList = localStorage.getItem('userList');
-          if (storedUserList) {
-            const userList = JSON.parse(storedUserList);
-            const user = userList.find((u: any) => u.email === JSON.parse(loggedInUser).email);
-            if (user) {
-              this.perfilForm.patchValue(user);
-            }
-          }
-        }
-      } 
-    }
+  modificar(usuario: any): void {
+    if (this.perfilForm.valid) {
+      const email = usuario.email;
+      const index = this.usuarios.findIndex((elemento: any) => elemento.email === email);
   
-  /**
-   * Metodo que se ejecuta al enviar el formulario de perfil.
-   * 
-   * Valida el formulario y actualiza los datos del usuario en localStorage si el formulario es valido.
-   * Muestra una alerta con el resultado de la actualizacion.
-   */
-    onSubmit(): void {
-      if (this.perfilForm.valid) {
-        const updatedUser = this.perfilForm.value;
-        if (this.isLocalStorageAvailable()) {
-          const storedUserList = localStorage.getItem('userList');
-          if (storedUserList) {
-            let userList = JSON.parse(storedUserList);
-            const userIndex = userList.findIndex((u: any) => u.email === updatedUser.email);
-            if (userIndex !== -1) {
-              // Actualizar la información del usuario en la lista
-              userList[userIndex] = updatedUser;
+      console.log('Email del usuario:', email);
+      console.log('Índice encontrado:', index);
+      console.log('Usuarios actuales:', this.usuarios); 
   
-              // Guardar la lista actualizada en localStorage
-              localStorage.setItem('userList', JSON.stringify(userList));
+      if (index !== -1) {
+        this.usuarios[index].nombre_completo = this.perfilForm.get('nombre_completo')?.value;
+        this.usuarios[index].usuario = this.perfilForm.get('usuario')?.value;
+        this.usuarios[index].email = this.perfilForm.get('email')?.value;
+        this.usuarios[index].fecha_nacimiento = this.perfilForm.get('fecha_nacimiento')?.value;
+        this.usuarios[index].direccion_despacho = this.perfilForm.get('direccion_despacho')?.value;
+        this.usuarios[index].password = this.perfilForm.get('password')?.value;
   
-              // Actualizar la información del usuario logueado en localStorage
-              localStorage.setItem('loggedInUser', JSON.stringify({
-                email: updatedUser.email,
-                nombre_completo: updatedUser.nombre_completo
-              }));
+        this.usuariosService.MetodoUsuario(this.usuarios);
+        this.sessionService.login(this.usuarios[index]);
   
-              console.log('Datos actualizados:', updatedUser);
-              alert('Datos actualizados correctamente');
-            } else {
-              console.error('Usuario no encontrado en la lista');
-            }
-          } else {
-            console.error('No se encontraron datos de usuario almacenados');
-          }
-        } 
       } else {
-        this.perfilForm.markAllAsTouched();
+        window.alert('El elemento de la lista no existe');
       }
+    } else {
+      this.perfilForm.markAllAsTouched();
     }
+  }
+
+   /**
+   * Metodo que se ejecuta al enviar el formulario.
+   */
+  onSubmit(): void {
+    if (this.perfilForm.valid) {
+      this.modificar(this.loggedInUser);
+    } else {
+      this.perfilForm.markAllAsTouched();
+    }
+  }
+  
 }

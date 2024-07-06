@@ -1,0 +1,32 @@
+[
+   {
+     "nombre_completo": "Marco polo",
+     "usuario": "Marco",
+     "email": "marco@gmail.com",
+     "fecha_nacimiento": "1997-11-04",
+     "direccion_despacho": "La florida 111111",
+     "password": "Marco123",
+     "confirm_password": "Marco123",
+     "rol": "admin"
+   },
+   {
+     "nombre_completo": "gio otarola",
+     "usuario": "gio",
+     "email": "gio@gmail.com",
+     "fecha_nacimiento": "1997-12-04",
+     "direccion_despacho": "La florida ",
+     "password": "Gio123",
+     "confirm_password": "Gio123",
+     "rol": "usuario"
+   },
+   {
+     "nombre_completo": "giovanny Otarola",
+     "usuario": "gios",
+     "email": "gios@gmail.com",
+     "fecha_nacimiento": "1991-07-04",
+     "direccion_despacho": "Peñaflor 12",
+     "password": "Gios123",
+     "confirm_password": "Gios123",
+     "rol": "usuario"
+   }
+ ]
