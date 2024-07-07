@@ -152,6 +152,12 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -170,6 +176,7 @@
                             <code>CommonModule</code>
                             <code>RouterModule</code>
                             <code>ReactiveFormsModule</code>
+                            <code>HttpClientModule</code>
                 </td>
             </tr>
 
@@ -253,12 +260,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: FormBuilder, router: Router)</code>
+<code>constructor(fb: FormBuilder, router: Router, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/registro/registro.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/registro/registro.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -308,6 +315,20 @@
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -346,8 +367,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="94"
-                                    class="link-to-prism">src/app/components/registro/registro.component.ts:94</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/registro/registro.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -421,8 +442,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/components/registro/registro.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/components/registro/registro.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -460,8 +481,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/components/registro/registro.component.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/components/registro/registro.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -469,7 +490,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Maneja el envio del formulario de registro.</p>
-<p>Si el formulario es valido, guarda los datos del usuario en el localStorage y redirige a la pagina de login.</p>
+<p>Si el formulario es valido, guarda los datos del usuario en el json y redirige a la pagina de login.</p>
 </div>
 
                         <div class="io-description">
@@ -500,8 +521,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/components/registro/registro.component.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/registro/registro.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -580,7 +601,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/registro/registro.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/registro/registro.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -600,7 +621,8 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;; 
-
+import { UsuariosService } from &#x27;../services/usuarios.service&#x27;;
+import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 /**
  * @description
  * Componente de registro de usuarios.
@@ -610,9 +632,10 @@ import { Router } from &#x27;@angular/router&#x27;;
 @Component({
   selector: &#x27;app-registro&#x27;,
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule],
   templateUrl: &#x27;./registro.component.html&#x27;,
-  styleUrl: &#x27;./registro.component.scss&#x27;
+  styleUrl: &#x27;./registro.component.scss&#x27;,
+  providers: [UsuariosService]
 })
 export class RegistroComponent implements OnInit {
   registroForm: FormGroup;
@@ -622,7 +645,7 @@ export class RegistroComponent implements OnInit {
    * @param {FormBuilder} fb -Constructor de formularios reactivos.
    * @param {Router} router -Servicio de enrutamiento de angular.
    */
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router,private usuariosService: UsuariosService) {
     this.registroForm &#x3D; this.fb.group({
       nombre_completo: [&#x27;&#x27;, Validators.required],
       usuario: [&#x27;&#x27;, Validators.required],
@@ -642,26 +665,37 @@ export class RegistroComponent implements OnInit {
   /**
    * Maneja el envio del formulario de registro.
    * 
-   * Si el formulario es valido, guarda los datos del usuario en el localStorage y redirige a la pagina de login.
+   * Si el formulario es valido, guarda los datos del usuario en el json y redirige a la pagina de login.
    */
   onSubmit(): void {
     if (this.registroForm.valid) {
-      const userData &#x3D; this.registroForm.value;
+      const userData &#x3D; { ...this.registroForm.value, rol: &#x27;usuario&#x27; };
 
-      // Obtener la lista de usuarios desde localStorage
-      const storedUsers &#x3D; localStorage.getItem(&#x27;userList&#x27;);
-      const userList &#x3D; storedUsers ? JSON.parse(storedUsers) : [];
 
-      // Agregar el nuevo usuario a la lista
-      userList.push(userData);
+      // Obtener la lista de usuarios desde el JSON usando JsonService
+      this.usuariosService.getJsonData().subscribe(
+        listaUsuarios &#x3D;&gt; {
+          if (!Array.isArray(listaUsuarios)) {
+            listaUsuarios &#x3D; []; 
+          }
 
-      // Guardar la lista actualizada de vuelta en localStorage
-      localStorage.setItem(&#x27;userList&#x27;, JSON.stringify(userList));
+          // Agregar el nuevo usuario a la lista
+          listaUsuarios.push(userData);
 
-      console.log(&#x27;Datos guardados:&#x27;, userList);
+          // Guardar la lista actualizada en el JSON
+          this.usuariosService.MetodoUsuario(listaUsuarios);
 
-      // Redirigir a la página de login
-      this.router.navigate([&#x27;/login&#x27;]);
+          console.log(&#x27;Datos guardados en JSON:&#x27;, listaUsuarios);
+          
+          // Redirigir a la página de login
+          this.router.navigate([&#x27;/login&#x27;]);
+        },
+        error &#x3D;&gt; {
+          console.error(&#x27;Error al obtener los datos de usuario&#x27;,error);
+
+        }
+      );
+
     } else {
       // Mostrar mensajes de error
       this.registroForm.markAllAsTouched();

@@ -125,7 +125,7 @@
     </p>
     <p class="comment">
         <p>Componente para la pagina de administracion.</p>
-<p>Este componente muestra la lista de los usuarios almacenado.</p>
+<p>Este componente muestra la lista de los usuarios almacenado y permite eliminar datos de un usuario seleccionado.</p>
 
     </p>
 
@@ -223,6 +223,9 @@
                                 <a href="#cargarUsuarios" >cargarUsuarios</a>
                             </li>
                             <li>
+                                <a href="#eliminar" >eliminar</a>
+                            </li>
+                            <li>
                                 <a href="#logout" >logout</a>
                             </li>
                             <li>
@@ -246,12 +249,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
+<code>constructor(sessionService: <a href="../injectables/SessionService.html" target="_self">SessionService</a>, router: Router, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/admin/admin.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/admin/admin.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -269,10 +272,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>authService</td>
+                                                        <td>sessionService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                                        <code><a href="../injectables/SessionService.html" target="_self" >SessionService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -285,6 +288,18 @@
                                                   
                                                         <td>
                                                                     <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -330,15 +345,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/components/admin/admin.component.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/components/admin/admin.component.ts:51</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Carga la lista de usuarios desde el localStorage.</p>
+                        <div class="io-description"><p>Carga la lista de usuarios desde el json.</p>
 <p>Si no existen usuarios almacenados, se imprime un mensaje en la consola.</p>
 </div>
 
@@ -346,6 +361,82 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminar"></a>
+                    <span class="name">
+                        <span ><b>eliminar</b></span>
+                        <a href="#eliminar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminar(usuario: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/components/admin/admin.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Elimina un usuario de la lista.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>usuario</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>El usuario a eliminar</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -370,8 +461,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/components/admin/admin.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/components/admin/admin.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -409,8 +500,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/components/admin/admin.component.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/components/admin/admin.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -453,10 +544,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/admin/admin.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/admin/admin.component.ts:25</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el usuario esta autenticado.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -484,10 +581,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/admin/admin.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/admin/admin.component.ts:30</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de usuarios almacenados.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -498,16 +601,16 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { AuthService } from &#x27;../services/services.component&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule} from &#x27;@angular/router&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-
+import { SessionService } from &#x27;../services/session.service&#x27;;
+import { UsuariosService } from &#x27;../services/usuarios.service&#x27;;
 /**
  * @description
  * Componente para la pagina de administracion.
  * 
- * Este componente muestra la lista de los usuarios almacenado.
+ * Este componente muestra la lista de los usuarios almacenado y permite eliminar datos de un usuario seleccionado.
  */
 @Component({
   selector: &#x27;app-admin&#x27;,
@@ -518,9 +621,18 @@ import { Router } from &#x27;@angular/router&#x27;;
 })
 export class AdminComponent {
 
+  /**
+   * Indica si el usuario esta autenticado.
+   */
   isLoggedIn &#x3D; false;
+
+  /**
+   * Lista de usuarios almacenados.
+   */
   usuarios: any[] &#x3D; [];
-  constructor(private authService: AuthService,private router: Router) {}
+
+
+  constructor(private sessionService: SessionService,private router: Router, private usuariosService: UsuariosService) {}
 
   /**
    * Metodo que se ejecuta al inicializar el componente.
@@ -528,38 +640,50 @@ export class AdminComponent {
    * Carga el estado de autenticacion y la lista de usuarios almacenados  en el localStorage.
    */
   ngOnInit(): void {
-    this.isLoggedIn &#x3D; this.authService.isAuthenticated();
-
-    this.authService.getAuthState().subscribe((isAuthenticated) &#x3D;&gt; {
-      this.isLoggedIn &#x3D; isAuthenticated;
-    });
-
+    this.isLoggedIn &#x3D; this.sessionService.getSessionStatus();
+  
     this.cargarUsuarios();
-   
   }
 
   /**
-   * Carga la lista de usuarios desde el localStorage.
+   * Carga la lista de usuarios desde el json.
    * 
    * Si no existen usuarios almacenados, se imprime un mensaje en la consola.
    */
   cargarUsuarios(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      const storedUserList &#x3D; localStorage.getItem(&#x27;userList&#x27;);
-      if (storedUserList) {
-        this.usuarios &#x3D; JSON.parse(storedUserList);
-      } else {
-        console.log(&#x27;No hay usuarios almacenados en localStorage.&#x27;);
-        // Puedes manejar el caso donde no hay usuarios, por ejemplo, redireccionando o mostrando un mensaje adecuado
+    this.usuariosService.getJsonData().subscribe(
+      (data: any[]) &#x3D;&gt; {
+        this.usuarios &#x3D; data;
+      },
+      error &#x3D;&gt; {
+        console.error(&#x27;Error al cargar los usuarios&#x27;, error);
       }
-    } 
+    );
+  }
+
+  /**
+   * Elimina un usuario de la lista.
+   * 
+   * @param usuario - El usuario a eliminar
+   */
+  eliminar(usuario: any): void {
+    const email &#x3D; usuario.email; // Obtener el email del usuario a eliminar
+  
+    const index &#x3D; this.usuarios.findIndex((elemento: any) &#x3D;&gt; elemento.email &#x3D;&#x3D;&#x3D; email);
+    
+    if (index !&#x3D;&#x3D; -1) {
+      this.usuarios.splice(index, 1);
+      this.usuariosService.MetodoUsuario(this.usuarios);
+    } else {
+      window.alert(&#x27;El usuario con el correo electrónico no existe en la lista.&#x27;);
+    }
   }
 
   /**
    * Cierra la sesion del usuario y redirige a la pagina login.
    */
   logout(): void {
-    this.authService.logout();
+    this.sessionService.logout();
     // Redirigir a la página login
     this.router.navigate([&#x27;/login&#x27;]).then(() &#x3D;&gt; {
       window.location.reload();
@@ -598,6 +722,8 @@ export class AdminComponent {
             &lt;th&gt;Dirección&lt;/th&gt;
             &lt;th&gt;Fecha Nacimiento&lt;/th&gt;
             &lt;th&gt;Password&lt;/th&gt;
+            &lt;th&gt;Rol&lt;/th&gt;
+            &lt;th&gt;Acciones&lt;/th&gt;
           &lt;/tr&gt;
         &lt;/thead&gt;
         &lt;tbody&gt;
@@ -608,6 +734,11 @@ export class AdminComponent {
             &lt;td&gt;{{ usuario.direccion_despacho }}&lt;/td&gt;
             &lt;td&gt;{{ usuario.fecha_nacimiento }}&lt;/td&gt;
             &lt;td&gt;{{ usuario.password }}&lt;/td&gt;
+            &lt;td&gt;{{ usuario.rol }}&lt;/td&gt;
+            &lt;td&gt;
+              &lt;!-- Botón de eliminar --&gt;
+              &lt;button class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;eliminar(usuario)&quot;&gt;Eliminar&lt;/button&gt;
+            &lt;/td&gt;
           &lt;/tr&gt;
         &lt;/tbody&gt;
       &lt;/table&gt;
@@ -644,7 +775,7 @@ export class AdminComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header>    <h1 class="text-center mt-5 text-white fw-bold">Panel de Administración</h1>    <nav class="navbar navbar-expand-md navbar-light">      <div class="container-fluid">        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">          <span class="navbar-toggler-icon"></span>        </button>        <div class="collapse navbar-collapse" id="navCollapse">          <ul class="navbar-nav ms-auto">            <li class="nav-item">              <button id="btn-logout" class="btn btn-primary" (click)="logout()">Cerrar sesión</button>            </li>          </ul>        </div>      </div>    </nav>  </header>  <div class="container">    <div class="table-responsive mt-5">      <table class="table table-bordered table-striped">        <thead>          <tr>            <th>Nombre Completo</th>            <th>Nombre Usuario</th>            <th>Email</th>            <th>Dirección</th>            <th>Fecha Nacimiento</th>            <th>Password</th>          </tr>        </thead>        <tbody>          <tr *ngFor="let usuario of usuarios">            <td>{{ usuario.nombre_completo }}</td>            <td>{{ usuario.usuario }}</td>            <td>{{ usuario.email }}</td>            <td>{{ usuario.direccion_despacho }}</td>            <td>{{ usuario.fecha_nacimiento }}</td>            <td>{{ usuario.password }}</td>          </tr>        </tbody>      </table>    </div>  </div>  <footer>    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>  </footer></div>'
+        var COMPONENT_TEMPLATE = '<div><header>    <h1 class="text-center mt-5 text-white fw-bold">Panel de Administración</h1>    <nav class="navbar navbar-expand-md navbar-light">      <div class="container-fluid">        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">          <span class="navbar-toggler-icon"></span>        </button>        <div class="collapse navbar-collapse" id="navCollapse">          <ul class="navbar-nav ms-auto">            <li class="nav-item">              <button id="btn-logout" class="btn btn-primary" (click)="logout()">Cerrar sesión</button>            </li>          </ul>        </div>      </div>    </nav>  </header>  <div class="container">    <div class="table-responsive mt-5">      <table class="table table-bordered table-striped">        <thead>          <tr>            <th>Nombre Completo</th>            <th>Nombre Usuario</th>            <th>Email</th>            <th>Dirección</th>            <th>Fecha Nacimiento</th>            <th>Password</th>            <th>Rol</th>            <th>Acciones</th>          </tr>        </thead>        <tbody>          <tr *ngFor="let usuario of usuarios">            <td>{{ usuario.nombre_completo }}</td>            <td>{{ usuario.usuario }}</td>            <td>{{ usuario.email }}</td>            <td>{{ usuario.direccion_despacho }}</td>            <td>{{ usuario.fecha_nacimiento }}</td>            <td>{{ usuario.password }}</td>            <td>{{ usuario.rol }}</td>            <td>              <!-- Botón de eliminar -->              <button class="btn btn-danger" (click)="eliminar(usuario)">Eliminar</button>            </td>          </tr>        </tbody>      </table>    </div>  </div>  <footer>    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p>  </footer></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarritoComponent', 'selector': 'app-carrito'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RecuperacionComponent', 'selector': 'app-recuperacion'},{'name': 'RegistroComponent', 'selector': 'app-registro'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AdminComponent'};
