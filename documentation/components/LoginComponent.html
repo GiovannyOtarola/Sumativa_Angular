@@ -164,6 +164,7 @@
                             <code>CommonModule</code>
                             <code>RouterModule</code>
                             <code>ReactiveFormsModule</code>
+                            <code>HttpClientModule</code>
                 </td>
             </tr>
 
@@ -238,12 +239,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: FormBuilder, router: Router)</code>
+<code>constructor(fb: FormBuilder, router: Router, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>, sessionService: <a href="../injectables/SessionService.html" target="_self">SessionService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/login/login.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/login/login.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -293,6 +294,34 @@
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sessionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SessionService.html" target="_self" >SessionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -331,8 +360,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/components/login/login.component.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/components/login/login.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -340,7 +369,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Maneja el envio del formuario de inicio de sesion.</p>
-<p>Si las credenciales son correctas, almacena el estado de la sesion en el localStorage y redirigue a la pagina index que muestra todos los juegos.</p>
+<p>Si las credenciales son correctas, almacena el estado de la sesion en el servicio y redirigue a la pagina index que muestra todos los juegos.</p>
 </div>
 
                         <div class="io-description">
@@ -380,7 +409,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/login/login.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/login/login.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -399,6 +428,9 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { UsuariosService } from &#x27;../services/usuarios.service&#x27;;
+import { SessionService } from &#x27;../services/session.service&#x27;;
 
 /**
  * @description
@@ -409,7 +441,7 @@ import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 @Component({
   selector: &#x27;app-login&#x27;,
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule],
   templateUrl: &#x27;./login.component.html&#x27;,
   styleUrl: &#x27;./login.component.scss&#x27;
 })
@@ -421,7 +453,7 @@ export class LoginComponent{
    * @param {FormBuilder} fb -Constructor de formularios reactivos.
    * @param {Router} router -Servicio de enrutamiento de angular.
    */
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private usuariosService : UsuariosService, private sessionService : SessionService) {
     this.loginForm &#x3D; this.fb.group({
       email: [&#x27;&#x27;, [Validators.required, Validators.email]],
       password: [&#x27;&#x27;, Validators.required]
@@ -431,7 +463,7 @@ export class LoginComponent{
   /**
    * Maneja el envio del formuario de inicio de sesion.
    * 
-   * Si las credenciales son correctas, almacena el estado de la sesion en el localStorage y redirigue a la pagina index que muestra todos los juegos.
+   * Si las credenciales son correctas, almacena el estado de la sesion en el servicio y redirigue a la pagina index que muestra todos los juegos.
    * 
    * @returns {void} -no retorna ningun valor.
    */
@@ -439,51 +471,35 @@ export class LoginComponent{
     if (this.loginForm.valid) {
       const formData &#x3D; this.loginForm.value;
 
-      // Verificar si las credenciales son del administrador
-      if (formData.email &#x3D;&#x3D;&#x3D; &#x27;admin@gmail.com&#x27; &amp;&amp; formData.password &#x3D;&#x3D;&#x3D; &#x27;Admin1234&#x27;) {
-        console.log(&#x27;Inicio de sesión exitoso para el administrador&#x27;);
-        alert(&#x27;Inicio de sesión exitoso para el administrador&#x27;);
+      // Autenticar al usuario usando el servicio UsuariosService
+      this.usuariosService.authenticateUser(formData.email, formData.password).subscribe(
+        matchedUser &#x3D;&gt; {
+          if (matchedUser) {
+            console.log(&#x27;Inicio de sesión exitoso&#x27;);
 
-        // Almacenar estado de sesión
-        localStorage.setItem(&#x27;sessionActive&#x27;, &#x27;true&#x27;);
-        localStorage.setItem(&#x27;loggedInUser&#x27;, JSON.stringify({ email: formData.email, nombre_completo: &#x27;Administrador&#x27; }));
+            // Establecer la sesión
+            this.sessionService.login(matchedUser);
 
-        // Redirigir al componente de administración
-        this.router.navigate([&#x27;/admin&#x27;]).then(() &#x3D;&gt; {
-          window.location.reload();
-        });
-        return; // Salir del método para evitar la lógica adicional
-      }
-
-      // usuarios normales
-      const storedUserList &#x3D; localStorage.getItem(&#x27;userList&#x27;);
-      if (storedUserList) {
-        const userList &#x3D; JSON.parse(storedUserList);
-        
-        const matchedUser &#x3D; userList.find((user: any) &#x3D;&gt; 
-          user.email &#x3D;&#x3D;&#x3D; formData.email &amp;&amp; user.password &#x3D;&#x3D;&#x3D; formData.password
-        );
-
-        if (matchedUser) {
-          console.log(&#x27;Inicio de sesión exitoso&#x27;);
-          alert(&#x27;Inicio de sesión exitoso&#x27;);
-
-          // Almacenar estado de sesión
-          localStorage.setItem(&#x27;sessionActive&#x27;, &#x27;true&#x27;);
-          localStorage.setItem(&#x27;loggedInUser&#x27;, JSON.stringify({ email: formData.email, nombre_completo: matchedUser.nombre_completo }));
-
-          // Redirigir a la página principal
-          this.router.navigate([&#x27;/index&#x27;]).then(() &#x3D;&gt; {
-            window.location.reload();
-          });
-        } else {
-          console.error(&#x27;Correo o contraseña incorrectos&#x27;);
-          alert(&#x27;Correo o contraseña incorrectos&#x27;);
+            // Redirigir según el rol del usuario
+            if (matchedUser.rol &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;) {
+              this.router.navigate([&#x27;/admin&#x27;]);
+            } else if (matchedUser.rol &#x3D;&#x3D;&#x3D; &#x27;usuario&#x27;) {
+              this.router.navigate([&#x27;/index&#x27;]);
+            } else {
+              console.error(&#x27;Rol desconocido&#x27;);
+              alert(&#x27;No se puede determinar el rol del usuario&#x27;);
+            }
+          } else {
+            console.error(&#x27;Correo o contraseña incorrectos&#x27;);
+            alert(&#x27;Correo o contraseña incorrectos&#x27;);
+          }
+        },
+        error &#x3D;&gt; {
+          console.error(&#x27;Error al autenticar usuario&#x27;, error);
+          alert(&#x27;Error al autenticar usuario&#x27;);
         }
-      } else {
-        console.error(&#x27;No se encontraron datos de usuario almacenados&#x27;);
-        alert(&#x27;No se encontraron datos de usuario almacenados&#x27;);
-      }
+      );
+
     } else {
       this.loginForm.markAllAsTouched();
     }

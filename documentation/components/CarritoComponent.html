@@ -220,19 +220,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#calcularTotal" >calcularTotal</a>
+                                <a href="#actualizarNumeroCarrito" >actualizarNumeroCarrito</a>
                             </li>
                             <li>
-                                <a href="#cargarCarritoDesdeLocalStorage" >cargarCarritoDesdeLocalStorage</a>
+                                <a href="#calcularTotal" >calcularTotal</a>
                             </li>
                             <li>
                                 <a href="#comprar" >comprar</a>
                             </li>
                             <li>
                                 <a href="#eliminarDelCarrito" >eliminarDelCarrito</a>
-                            </li>
-                            <li>
-                                <a href="#guardarCarritoEnLocalStorage" >guardarCarritoEnLocalStorage</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -258,12 +255,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+<code>constructor(carritoService: <a href="../injectables/CarritoService.html" target="_self">CarritoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/carrito/carrito.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/carrito/carrito.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -281,10 +278,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>authService</td>
+                                                        <td>carritoService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                                        <code><a href="../injectables/CarritoService.html" target="_self" >CarritoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -314,6 +311,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="actualizarNumeroCarrito"></a>
+                    <span class="name">
+                        <span ><b>actualizarNumeroCarrito</b></span>
+                        <a href="#actualizarNumeroCarrito"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>actualizarNumeroCarrito()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza el numero de elementos en el carrito.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="calcularTotal"></a>
                     <span class="name">
                         <span ><b>calcularTotal</b></span>
@@ -330,8 +366,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -359,45 +395,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cargarCarritoDesdeLocalStorage"></a>
-                    <span class="name">
-                        <span ><b>cargarCarritoDesdeLocalStorage</b></span>
-                        <a href="#cargarCarritoDesdeLocalStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>cargarCarritoDesdeLocalStorage()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="75"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:75</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Carga el carrito desde el locarStorage</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="comprar"></a>
                     <span class="name">
                         <span ><b>comprar</b></span>
@@ -414,8 +411,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +450,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:39</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -511,45 +508,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="guardarCarritoEnLocalStorage"></a>
-                    <span class="name">
-                        <span ><b>guardarCarritoEnLocalStorage</b></span>
-                        <a href="#guardarCarritoEnLocalStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>guardarCarritoEnLocalStorage()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:85</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Guarda el estado actual del carrito en el localStorage.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -566,15 +524,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el localStorage</p>
+                        <div class="io-description"><p>Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el Servicio encargado de administrar el carrito.</p>
 </div>
 
                         <div class="io-description">
@@ -605,8 +563,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/components/carrito/carrito.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -648,10 +606,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/carrito/carrito.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/carrito/carrito.component.ts:29</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el usuario esta autenticado.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -679,10 +643,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/carrito/carrito.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/carrito/carrito.component.ts:24</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de juegos en el carrito.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -696,8 +666,8 @@
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { Juego } from &#x27;../index/index.component&#x27;;
-import { AuthService } from &#x27;../services/services.component&#x27;;
-
+import { CarritoService } from &#x27;../services/carrito.service&#x27;;
+import { IndexComponent } from &#x27;../index/index.component&#x27;;
 /**
  * @description
  * Componente que maneja el carrito de compras.
@@ -712,18 +682,42 @@ import { AuthService } from &#x27;../services/services.component&#x27;;
   styleUrl: &#x27;./carrito.component.scss&#x27;
 })
 export class CarritoComponent {
- 
+ /**
+  * Lista de juegos en el carrito.
+  */
   juegosEnCarrito: Juego[] &#x3D; [];
-  isLoggedIn &#x3D; false;
-
-  constructor(private authService: AuthService) { }
 
   /**
-   * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el localStorage
+   * Indica si el usuario esta autenticado.
+   */
+  isLoggedIn &#x3D; false;
+
+  constructor(private carritoService: CarritoService) { }
+
+  /**
+   * Inicializa el componente, estableciendo el estado de autenticacion y cargando el carrito desde el Servicio encargado de administrar el carrito.
    */
   ngOnInit(): void {
-    this.isLoggedIn &#x3D; this.authService.isAuthenticated();
-    this.cargarCarritoDesdeLocalStorage();
+    this.actualizarNumeroCarrito();
+    this.carritoService.getCarrito().subscribe(
+      (carrito: Juego[]) &#x3D;&gt; {
+        this.juegosEnCarrito &#x3D; carrito;
+      },
+      (error) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar el carrito&#x27;, error);
+      }
+    );
+  }
+
+  /**
+   * Actualiza el numero de elementos en el carrito.
+   */
+  actualizarNumeroCarrito(): void {
+    // Lógica para actualizar el número del carrito, por ejemplo:
+    this.carritoService.getCarrito().subscribe(carrito &#x3D;&gt; {
+      const nuevoNumero &#x3D; carrito.length; // Obtener la longitud del carrito
+      
+    });
   }
 
   /**
@@ -731,19 +725,15 @@ export class CarritoComponent {
    * @param {Juego} juego -El juego que sera eliminado del carrito.
    */
   eliminarDelCarrito(juego: Juego): void {
-    const index &#x3D; this.juegosEnCarrito.findIndex(j &#x3D;&gt; j.id &#x3D;&#x3D;&#x3D; juego.id);
-    if (index !&#x3D;&#x3D; -1) {
-      this.juegosEnCarrito.splice(index, 1);
-      this.guardarCarritoEnLocalStorage();
-    }
+    this.carritoService.eliminarJuego(juego);
+    this.actualizarNumeroCarrito(); // Asegurar actualización inmediata
   }
 
   /**
    * Vacia todo el carrito.
    */
   vaciarCarrito(): void {
-    this.juegosEnCarrito &#x3D; [];
-    this.guardarCarritoEnLocalStorage();
+    this.carritoService.vaciarCarrito();
   }
 
   /**
@@ -758,29 +748,12 @@ export class CarritoComponent {
   /**
    * Realiza la compra de los juegos en el carrito y vacia el carrito.
    */
-  comprar(): void {    
+  comprar(): void {
     alert(&#x27;¡Compra realizada con éxito!&#x27;);
     this.vaciarCarrito();
   }
 
-  /**
-   * Carga el carrito desde el locarStorage
-   */
-  cargarCarritoDesdeLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      const juegosEnCarritoLS &#x3D; localStorage.getItem(&#x27;juegos-en-carrito&#x27;);
-      this.juegosEnCarrito &#x3D; juegosEnCarritoLS ? JSON.parse(juegosEnCarritoLS) : [];
-    }
-  }
-
-  /**
-   * Guarda el estado actual del carrito en el localStorage.
-   */
-  guardarCarritoEnLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      localStorage.setItem(&#x27;juegos-en-carrito&#x27;, JSON.stringify(this.juegosEnCarrito));
-    }
-  }
+  
 
   
 }

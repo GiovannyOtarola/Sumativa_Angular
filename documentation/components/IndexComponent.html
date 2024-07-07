@@ -206,6 +206,9 @@
                                 <a href="#juegosFiltrados" >juegosFiltrados</a>
                             </li>
                             <li>
+                                <a href="#numeroCarrito" >numeroCarrito</a>
+                            </li>
+                            <li>
                                 <a href="#tituloPrincipal" >tituloPrincipal</a>
                             </li>
                         </ul>
@@ -227,13 +230,10 @@
                                 <a href="#agregarAlCarrito" >agregarAlCarrito</a>
                             </li>
                             <li>
-                                <a href="#cargarCarritoDesdeLocalStorage" >cargarCarritoDesdeLocalStorage</a>
+                                <a href="#cargarJuegos" >cargarJuegos</a>
                             </li>
                             <li>
                                 <a href="#filtrarJuegos" >filtrarJuegos</a>
-                            </li>
-                            <li>
-                                <a href="#guardarCarritoEnLocalStorage" >guardarCarritoEnLocalStorage</a>
                             </li>
                             <li>
                                 <a href="#logout" >logout</a>
@@ -259,12 +259,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+<code>constructor(juegosService: <a href="../injectables/JuegosService.html" target="_self">JuegosService</a>, sessionService: <a href="../injectables/SessionService.html" target="_self">SessionService</a>, carritoService: <a href="../injectables/CarritoService.html" target="_self">CarritoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/index/index.component.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/index/index.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -282,10 +282,34 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>authService</td>
+                                                        <td>juegosService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                                        <code><a href="../injectables/JuegosService.html" target="_self" >JuegosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sessionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SessionService.html" target="_self" >SessionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>carritoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CarritoService.html" target="_self" >CarritoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -331,8 +355,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="219"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:219</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:127</a></div>
                         </td>
                     </tr>
 
@@ -370,8 +394,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="203"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:203</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -430,31 +454,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cargarCarritoDesdeLocalStorage"></a>
+                    <a name="cargarJuegos"></a>
                     <span class="name">
-                        <span ><b>cargarCarritoDesdeLocalStorage</b></span>
-                        <a href="#cargarCarritoDesdeLocalStorage"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>cargarJuegos</b></span>
+                        <a href="#cargarJuegos"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>cargarCarritoDesdeLocalStorage()</code>
+<code>cargarJuegos()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="236"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:236</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:78</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Carga el estado del carrito desde el localStorage.</p>
+                        <div class="io-description"><p>Carga la lista de juegos desde el servicio.</p>
 </div>
 
                         <div class="io-description">
@@ -485,8 +509,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -546,45 +570,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="guardarCarritoEnLocalStorage"></a>
-                    <span class="name">
-                        <span ><b>guardarCarritoEnLocalStorage</b></span>
-                        <a href="#guardarCarritoEnLocalStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>guardarCarritoEnLocalStorage()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="227"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:227</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Guarda el estado actual del carrito en el localStorage</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="logout"></a>
                     <span class="name">
                         <span ><b>logout</b></span>
@@ -601,8 +586,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="247"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:247</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -640,15 +625,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/app/components/index/index.component.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/components/index/index.component.ts:65</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito desde el localStorage</p>
+                        <div class="io-description"><p>Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito.</p>
 </div>
 
                         <div class="io-description">
@@ -683,7 +668,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/index/index.component.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/index/index.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -709,133 +694,21 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    //Juegos play 5
-    {
-        id:&quot;play51&quot;,
-        categoria: &quot;play5&quot;,
-        titulo:&quot;Play5 01&quot;,
-        Image: &quot;assets/images/play5/play51.png&quot;,
-        precio: 100,
-    },
-    {
-      id:&quot;play52&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 02&quot;,
-      Image: &quot;assets/images/play5/play52.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play53&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 03&quot;,
-      Image: &quot;assets/images/play5/play53.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play54&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 04&quot;,
-      Image: &quot;assets/images/play5/play54.png&quot;,
-      precio: 100,
-    },
-    //Juegos Swtich
-    {
-      id:&quot;switch1&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 01&quot;,
-      Image: &quot;assets/images/switch/switch1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch2&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 02&quot;,
-      Image: &quot;assets/images/switch/switch2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch3&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 03&quot;,
-      Image: &quot;assets/images/switch/switch3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch4&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 04&quot;,
-      Image: &quot;assets/images/switch/switch4.png&quot;,
-      precio: 100,
-    },
-  //Juegos Xbox
-    {
-      id:&quot;xbox1&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 01&quot;,
-      Image: &quot;assets/images/xbox/xbox1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox2&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 02&quot;,
-      Image: &quot;assets/images/xbox/xbox2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox3&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 03&quot;,
-      Image: &quot;assets/images/xbox/xbox3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox4&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 04&quot;,
-      Image: &quot;assets/images/xbox/xbox4.png&quot;,
-      precio: 100,
-    },
-    //Juegos PC
-    {
-      id:&quot;pc1&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 01&quot;,
-      Image: &quot;assets/images/pc/pc1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc2&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 02&quot;,
-      Image: &quot;assets/images/pc/pc2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc3&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 03&quot;,
-      Image: &quot;assets/images/pc/pc3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc4&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 04&quot;,
-      Image: &quot;assets/images/pc/pc4.png&quot;,
-      precio: 100,
-    },
-    
-  ]</code>
+                        <i>Default value : </i><code>[]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/index/index.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/index/index.component.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de todos los juegos.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -863,10 +736,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/components/index/index.component.ts:155</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/index/index.component.ts:52</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de juegos en el carrito.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -887,12 +766,60 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/components/index/index.component.ts:153</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/index/index.component.ts:42</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de juegos filtrados segun la categoria seleccionada.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numeroCarrito"></a>
+                    <span class="name">
+                        <span ><b>numeroCarrito</b></span>
+                        <a href="#numeroCarrito"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/index/index.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Numero de juegos en el carrito.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -920,10 +847,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/components/index/index.component.ts:154</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/index/index.component.ts:47</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Titulo principal que se muestra en la pagina.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -936,8 +869,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { AuthService } from &#x27;../services/services.component&#x27;;
-
+import { SessionService } from &#x27;../services/session.service&#x27;;
+import { JuegosService } from &#x27;../services/juegos.service&#x27;;
+import { CarritoService } from &#x27;../services/carrito.service&#x27;;
 /**
  * @description
  * Componente principal de la aplicacion
@@ -964,153 +898,62 @@ export interface Juego{
 
 
 export class IndexComponent {
- //Lista de Juegos
-  juegos: Juego[] &#x3D; [
-    //Juegos play 5
-    {
-        id:&quot;play51&quot;,
-        categoria: &quot;play5&quot;,
-        titulo:&quot;Play5 01&quot;,
-        Image: &quot;assets/images/play5/play51.png&quot;,
-        precio: 100,
-    },
-    {
-      id:&quot;play52&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 02&quot;,
-      Image: &quot;assets/images/play5/play52.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play53&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 03&quot;,
-      Image: &quot;assets/images/play5/play53.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play54&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 04&quot;,
-      Image: &quot;assets/images/play5/play54.png&quot;,
-      precio: 100,
-    },
-    //Juegos Swtich
-    {
-      id:&quot;switch1&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 01&quot;,
-      Image: &quot;assets/images/switch/switch1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch2&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 02&quot;,
-      Image: &quot;assets/images/switch/switch2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch3&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 03&quot;,
-      Image: &quot;assets/images/switch/switch3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch4&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 04&quot;,
-      Image: &quot;assets/images/switch/switch4.png&quot;,
-      precio: 100,
-    },
-  //Juegos Xbox
-    {
-      id:&quot;xbox1&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 01&quot;,
-      Image: &quot;assets/images/xbox/xbox1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox2&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 02&quot;,
-      Image: &quot;assets/images/xbox/xbox2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox3&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 03&quot;,
-      Image: &quot;assets/images/xbox/xbox3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox4&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 04&quot;,
-      Image: &quot;assets/images/xbox/xbox4.png&quot;,
-      precio: 100,
-    },
-    //Juegos PC
-    {
-      id:&quot;pc1&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 01&quot;,
-      Image: &quot;assets/images/pc/pc1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc2&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 02&quot;,
-      Image: &quot;assets/images/pc/pc2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc3&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 03&quot;,
-      Image: &quot;assets/images/pc/pc3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc4&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 04&quot;,
-      Image: &quot;assets/images/pc/pc4.png&quot;,
-      precio: 100,
-    },
-    
-  ];
 
-  juegosFiltrados: Juego[];
+  /**
+   * Lista de todos los juegos.
+   */
+  juegos: Juego[] &#x3D; [];
+
+  /**
+   * Lista de juegos filtrados segun la categoria seleccionada.
+   */
+  juegosFiltrados: Juego[] &#x3D; [];
+
+  /**
+   * Titulo principal que se muestra en la pagina.
+   */
   tituloPrincipal: String &#x3D; &quot;Todos los Juegos&quot;;
+
+  /**
+   * Lista de juegos en el carrito.
+   */
   juegosEnCarrito: Juego[] &#x3D; [];
 
+  /**
+   * Numero de juegos en el carrito.
+   */
+  numeroCarrito: number &#x3D; 0;
   isLoggedIn &#x3D; false;
 
-  constructor(private authService: AuthService) {
-    this.juegosFiltrados &#x3D; this.juegos;
-  }
+  constructor(private juegosService: JuegosService, private sessionService: SessionService, private carritoService: CarritoService) {}
 
 /**
- * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito desde el localStorage
+ * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito.
  */
-  ngOnInit(): void {
-    this.juegosFiltrados &#x3D; this.juegos;
+ngOnInit(): void {
+  this.cargarJuegos();
+  this.isLoggedIn &#x3D; this.sessionService.getSessionStatus();
+   // Suscripción para escuchar cambios en el carrito
+   this.carritoService.getCarrito().subscribe(carrito &#x3D;&gt; {
+    this.juegosEnCarrito &#x3D; carrito;
+    this.actualizarNumeroCarrito(); // Actualizar el número visible en el HTML
+  });
+}
 
-    this.isLoggedIn &#x3D; this.authService.isAuthenticated();
-
-    this.authService.getAuthState().subscribe((isAuthenticated) &#x3D;&gt; {
-      this.isLoggedIn &#x3D; isAuthenticated;
-    });
-
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      this.cargarCarritoDesdeLocalStorage();
+/**
+ * Carga la lista de juegos desde el servicio.
+ */
+cargarJuegos(): void {
+  this.juegosService.getJsonData().subscribe(
+    (data: Juego[]) &#x3D;&gt; {
+      this.juegos &#x3D; data;
+      this.juegosFiltrados &#x3D; this.juegos;
+    },
+    (error) &#x3D;&gt; {
+      console.error(&#x27;Error al cargar los juegos&#x27;, error);
     }
-  }
+  );
+}
 
 /**
  * Filtra la lista de juegos segun la categoria proporcionada
@@ -1136,51 +979,32 @@ export class IndexComponent {
    */
 
   agregarAlCarrito(juego: Juego): void {
-    const juegoEnCarrito &#x3D; this.juegosEnCarrito.find(j &#x3D;&gt; j.id &#x3D;&#x3D;&#x3D; juego.id);
-
+    const juegoEnCarrito &#x3D; this.carritoService.getCarritoValue().find(j &#x3D;&gt; j.id &#x3D;&#x3D;&#x3D; juego.id);
+  
     if (juegoEnCarrito) {
-      juegoEnCarrito.cantidad &#x3D; (juegoEnCarrito.cantidad || 0) + 1;
+      // Si el juego ya está en el carrito, incrementar la cantidad
+      this.carritoService.incrementarCantidad(juegoEnCarrito);
     } else {
-      this.juegosEnCarrito.push({ ...juego, cantidad: 1 });
+      // Si el juego no está en el carrito, agregarlo con cantidad 1
+      this.carritoService.agregarJuego({ ...juego, cantidad: 1 });
     }
-
-    this.actualizarNumeroCarrito();
-    this.guardarCarritoEnLocalStorage();
   }
-
   /**
    * Actualiza el numero de juegos en el carrito que se muestra en el html del componente.
    */
   actualizarNumeroCarrito(): void {
     let nuevoNumero &#x3D; this.juegosEnCarrito.reduce((acc, juego) &#x3D;&gt; acc + (juego.cantidad || 0), 0);
-    document.getElementById(&#x27;numcarrito&#x27;)!.innerText &#x3D; &#x60;${nuevoNumero}&#x60;;
+    this.numeroCarrito &#x3D; nuevoNumero; // Asignar el nuevo número a una propiedad del componente
   }
 
-  /**
-   * Guarda el estado actual del carrito en el localStorage
-   */
-  guardarCarritoEnLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      localStorage.setItem(&#x27;juegos-en-carrito&#x27;, JSON.stringify(this.juegosEnCarrito));
-    }
-  }
 
-  /**
-   * Carga el estado del carrito desde el localStorage.
-   */
-  cargarCarritoDesdeLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      const juegosEnCarritoLS &#x3D; localStorage.getItem(&#x27;juegos-en-carrito&#x27;);
-      this.juegosEnCarrito &#x3D; juegosEnCarritoLS ? JSON.parse(juegosEnCarritoLS) : [];
-      this.actualizarNumeroCarrito();
-    }
-  }
 
   /**
    * Cierra la sesion del usuario.
    */
   logout(): void {
-    this.authService.logout();
+    this.sessionService.logout();
+    window.location.reload();
   }
 }
 </code></pre>
@@ -1221,7 +1045,7 @@ export class IndexComponent {
                         &lt;/li&gt;
                         &lt;li class&#x3D;&quot;nav-item d-flex align-items-center&quot;&gt;
                             &lt;a class&#x3D;&quot;btn btn-light w-100 mb-2 boton-carrito&quot; routerLink&#x3D;&quot;/carrito&quot;&gt;Carrito&lt;/a&gt;
-                            &lt;span id&#x3D;&quot;numcarrito&quot; class&#x3D;&quot;numero ms-2 mb-2 badge bg-white text-dark fs-6&quot;&gt;0&lt;/span&gt;
+                            &lt;span id&#x3D;&quot;numcarrito&quot; class&#x3D;&quot;numero ms-2 mb-2 badge bg-white text-dark fs-6&quot;&gt;{{ numeroCarrito }}&lt;/span&gt;
                         &lt;/li&gt;
                     &lt;/ul&gt;
                 &lt;/div&gt;
@@ -1276,7 +1100,7 @@ export class IndexComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container " >    <div class="row">        <aside class="col-12 col-md-3 ">            <header class="container text-center">                <h2 class="Logo align-self-start text-start fw-bold ">XYZGaming</h2>            </header>            <nav class="navbar navbar-expand-md navbar-light">                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">                    <span class="navbar-toggler-icon"></span>                </button>                <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">                    <ul class="navbar-nav flex-column">                        <li class="nav-item">                            <button id="btn-login" *ngIf="!isLoggedIn" class="btn btn-light w-100 mb-2" routerLink="/login">Iniciar sesión</button>                            <button id="btn-perfil"  *ngIf="isLoggedIn"class="btn btn-light w-100 mb-2" routerLink="/perfil">Mi perfil</button>                            <button id="btn-logout" *ngIf="isLoggedIn" class="btn btn-light w-100 mb-2" (click)="logout()">Cerrar sesión</button>                        </li>                        <li class="nav-item">                            <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'todos\')">Todos los Juegos</button>                        </li>                        <li class="nav-item">                            <button id="play5" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'play5\')">Play5</button>                        </li>                        <li class="nav-item">                             <button id="switch" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'switch\')">Switch</button>                        </li>                        <li class="nav-item">                            <button id="xbox" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'xbox\')">Xbox</button>                        </li>                        <li class="nav-item">                            <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'pc\')">PC</button>                        </li>                        <li class="nav-item d-flex align-items-center">                            <a class="btn btn-light w-100 mb-2 boton-carrito" routerLink="/carrito">Carrito</a>                            <span id="numcarrito" class="numero ms-2 mb-2 badge bg-white text-dark fs-6">0</span>                        </li>                    </ul>                </div>            </nav>        </aside>        <main class="container">            <h2 class="fw-bold text-center">{{ tituloPrincipal }}</h2>            <div id="contenedor-juegos" class="row mb-4">              <div *ngFor="let juego of juegosFiltrados" class="col-12 col-md-6 col-lg-4 mb-4">                <div class="h-100">                  <img class="card-img-top img-fluid" [src]="juego.Image" [alt]="juego.titulo">                  <div class="card-body text-center">                    <h3 class="card-title">{{ juego.titulo }}</h3>                    <p class="card-text">{{ juego.precio }}</p>                    <button class="btn btn-primary" (click)="agregarAlCarrito(juego)">Agregar</button>                  </div>                </div>              </div>            </div>          </main>    </div></div><footer >    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p></footer></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container " >    <div class="row">        <aside class="col-12 col-md-3 ">            <header class="container text-center">                <h2 class="Logo align-self-start text-start fw-bold ">XYZGaming</h2>            </header>            <nav class="navbar navbar-expand-md navbar-light">                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">                    <span class="navbar-toggler-icon"></span>                </button>                <div class="collapse navbar-collapse" id="navCollapse" style="margin-top: 4.4px">                    <ul class="navbar-nav flex-column">                        <li class="nav-item">                            <button id="btn-login" *ngIf="!isLoggedIn" class="btn btn-light w-100 mb-2" routerLink="/login">Iniciar sesión</button>                            <button id="btn-perfil"  *ngIf="isLoggedIn"class="btn btn-light w-100 mb-2" routerLink="/perfil">Mi perfil</button>                            <button id="btn-logout" *ngIf="isLoggedIn" class="btn btn-light w-100 mb-2" (click)="logout()">Cerrar sesión</button>                        </li>                        <li class="nav-item">                            <button id="todos" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'todos\')">Todos los Juegos</button>                        </li>                        <li class="nav-item">                            <button id="play5" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'play5\')">Play5</button>                        </li>                        <li class="nav-item">                             <button id="switch" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'switch\')">Switch</button>                        </li>                        <li class="nav-item">                            <button id="xbox" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'xbox\')">Xbox</button>                        </li>                        <li class="nav-item">                            <button id="pc" class="btn btn-light w-100 mb-2 boton-categoria" (click)="filtrarJuegos(\'pc\')">PC</button>                        </li>                        <li class="nav-item d-flex align-items-center">                            <a class="btn btn-light w-100 mb-2 boton-carrito" routerLink="/carrito">Carrito</a>                            <span id="numcarrito" class="numero ms-2 mb-2 badge bg-white text-dark fs-6">{{ numeroCarrito }}</span>                        </li>                    </ul>                </div>            </nav>        </aside>        <main class="container">            <h2 class="fw-bold text-center">{{ tituloPrincipal }}</h2>            <div id="contenedor-juegos" class="row mb-4">              <div *ngFor="let juego of juegosFiltrados" class="col-12 col-md-6 col-lg-4 mb-4">                <div class="h-100">                  <img class="card-img-top img-fluid" [src]="juego.Image" [alt]="juego.titulo">                  <div class="card-body text-center">                    <h3 class="card-title">{{ juego.titulo }}</h3>                    <p class="card-text">{{ juego.precio }}</p>                    <button class="btn btn-primary" (click)="agregarAlCarrito(juego)">Agregar</button>                  </div>                </div>              </div>            </div>          </main>    </div></div><footer >    <p class="fw-bold">© 2024 XYZGaming. Todos los derechos reservados.</p></footer></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarritoComponent', 'selector': 'app-carrito'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RecuperacionComponent', 'selector': 'app-recuperacion'},{'name': 'RegistroComponent', 'selector': 'app-registro'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'IndexComponent'};

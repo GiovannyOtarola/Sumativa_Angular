@@ -407,8 +407,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { AuthService } from &#x27;../services/services.component&#x27;;
-
+import { SessionService } from &#x27;../services/session.service&#x27;;
+import { JuegosService } from &#x27;../services/juegos.service&#x27;;
+import { CarritoService } from &#x27;../services/carrito.service&#x27;;
 /**
  * @description
  * Componente principal de la aplicacion
@@ -435,153 +436,62 @@ export interface Juego{
 
 
 export class IndexComponent {
- //Lista de Juegos
-  juegos: Juego[] &#x3D; [
-    //Juegos play 5
-    {
-        id:&quot;play51&quot;,
-        categoria: &quot;play5&quot;,
-        titulo:&quot;Play5 01&quot;,
-        Image: &quot;assets/images/play5/play51.png&quot;,
-        precio: 100,
-    },
-    {
-      id:&quot;play52&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 02&quot;,
-      Image: &quot;assets/images/play5/play52.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play53&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 03&quot;,
-      Image: &quot;assets/images/play5/play53.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;play54&quot;,
-      categoria: &quot;play5&quot;,
-      titulo:&quot;Play5 04&quot;,
-      Image: &quot;assets/images/play5/play54.png&quot;,
-      precio: 100,
-    },
-    //Juegos Swtich
-    {
-      id:&quot;switch1&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 01&quot;,
-      Image: &quot;assets/images/switch/switch1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch2&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 02&quot;,
-      Image: &quot;assets/images/switch/switch2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch3&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 03&quot;,
-      Image: &quot;assets/images/switch/switch3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;switch4&quot;,
-      categoria: &quot;switch&quot;,
-      titulo:&quot;switch 04&quot;,
-      Image: &quot;assets/images/switch/switch4.png&quot;,
-      precio: 100,
-    },
-  //Juegos Xbox
-    {
-      id:&quot;xbox1&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 01&quot;,
-      Image: &quot;assets/images/xbox/xbox1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox2&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 02&quot;,
-      Image: &quot;assets/images/xbox/xbox2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox3&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 03&quot;,
-      Image: &quot;assets/images/xbox/xbox3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;xbox4&quot;,
-      categoria: &quot;xbox&quot;,
-      titulo:&quot;xbox 04&quot;,
-      Image: &quot;assets/images/xbox/xbox4.png&quot;,
-      precio: 100,
-    },
-    //Juegos PC
-    {
-      id:&quot;pc1&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 01&quot;,
-      Image: &quot;assets/images/pc/pc1.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc2&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 02&quot;,
-      Image: &quot;assets/images/pc/pc2.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc3&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 03&quot;,
-      Image: &quot;assets/images/pc/pc3.png&quot;,
-      precio: 100,
-    },
-    {
-      id:&quot;pc4&quot;,
-      categoria: &quot;pc&quot;,
-      titulo:&quot;pc 04&quot;,
-      Image: &quot;assets/images/pc/pc4.png&quot;,
-      precio: 100,
-    },
-    
-  ];
 
-  juegosFiltrados: Juego[];
+  /**
+   * Lista de todos los juegos.
+   */
+  juegos: Juego[] &#x3D; [];
+
+  /**
+   * Lista de juegos filtrados segun la categoria seleccionada.
+   */
+  juegosFiltrados: Juego[] &#x3D; [];
+
+  /**
+   * Titulo principal que se muestra en la pagina.
+   */
   tituloPrincipal: String &#x3D; &quot;Todos los Juegos&quot;;
+
+  /**
+   * Lista de juegos en el carrito.
+   */
   juegosEnCarrito: Juego[] &#x3D; [];
 
+  /**
+   * Numero de juegos en el carrito.
+   */
+  numeroCarrito: number &#x3D; 0;
   isLoggedIn &#x3D; false;
 
-  constructor(private authService: AuthService) {
-    this.juegosFiltrados &#x3D; this.juegos;
-  }
+  constructor(private juegosService: JuegosService, private sessionService: SessionService, private carritoService: CarritoService) {}
 
 /**
- * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito desde el localStorage
+ * Inicializa el componente,estableciendo los juegos filtrados, el estado de autenticacion y cargando el carrito.
  */
-  ngOnInit(): void {
-    this.juegosFiltrados &#x3D; this.juegos;
+ngOnInit(): void {
+  this.cargarJuegos();
+  this.isLoggedIn &#x3D; this.sessionService.getSessionStatus();
+   // Suscripción para escuchar cambios en el carrito
+   this.carritoService.getCarrito().subscribe(carrito &#x3D;&gt; {
+    this.juegosEnCarrito &#x3D; carrito;
+    this.actualizarNumeroCarrito(); // Actualizar el número visible en el HTML
+  });
+}
 
-    this.isLoggedIn &#x3D; this.authService.isAuthenticated();
-
-    this.authService.getAuthState().subscribe((isAuthenticated) &#x3D;&gt; {
-      this.isLoggedIn &#x3D; isAuthenticated;
-    });
-
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      this.cargarCarritoDesdeLocalStorage();
+/**
+ * Carga la lista de juegos desde el servicio.
+ */
+cargarJuegos(): void {
+  this.juegosService.getJsonData().subscribe(
+    (data: Juego[]) &#x3D;&gt; {
+      this.juegos &#x3D; data;
+      this.juegosFiltrados &#x3D; this.juegos;
+    },
+    (error) &#x3D;&gt; {
+      console.error(&#x27;Error al cargar los juegos&#x27;, error);
     }
-  }
+  );
+}
 
 /**
  * Filtra la lista de juegos segun la categoria proporcionada
@@ -607,51 +517,32 @@ export class IndexComponent {
    */
 
   agregarAlCarrito(juego: Juego): void {
-    const juegoEnCarrito &#x3D; this.juegosEnCarrito.find(j &#x3D;&gt; j.id &#x3D;&#x3D;&#x3D; juego.id);
-
+    const juegoEnCarrito &#x3D; this.carritoService.getCarritoValue().find(j &#x3D;&gt; j.id &#x3D;&#x3D;&#x3D; juego.id);
+  
     if (juegoEnCarrito) {
-      juegoEnCarrito.cantidad &#x3D; (juegoEnCarrito.cantidad || 0) + 1;
+      // Si el juego ya está en el carrito, incrementar la cantidad
+      this.carritoService.incrementarCantidad(juegoEnCarrito);
     } else {
-      this.juegosEnCarrito.push({ ...juego, cantidad: 1 });
+      // Si el juego no está en el carrito, agregarlo con cantidad 1
+      this.carritoService.agregarJuego({ ...juego, cantidad: 1 });
     }
-
-    this.actualizarNumeroCarrito();
-    this.guardarCarritoEnLocalStorage();
   }
-
   /**
    * Actualiza el numero de juegos en el carrito que se muestra en el html del componente.
    */
   actualizarNumeroCarrito(): void {
     let nuevoNumero &#x3D; this.juegosEnCarrito.reduce((acc, juego) &#x3D;&gt; acc + (juego.cantidad || 0), 0);
-    document.getElementById(&#x27;numcarrito&#x27;)!.innerText &#x3D; &#x60;${nuevoNumero}&#x60;;
+    this.numeroCarrito &#x3D; nuevoNumero; // Asignar el nuevo número a una propiedad del componente
   }
 
-  /**
-   * Guarda el estado actual del carrito en el localStorage
-   */
-  guardarCarritoEnLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      localStorage.setItem(&#x27;juegos-en-carrito&#x27;, JSON.stringify(this.juegosEnCarrito));
-    }
-  }
 
-  /**
-   * Carga el estado del carrito desde el localStorage.
-   */
-  cargarCarritoDesdeLocalStorage(): void {
-    if (typeof localStorage !&#x3D;&#x3D; &#x27;undefined&#x27;) {
-      const juegosEnCarritoLS &#x3D; localStorage.getItem(&#x27;juegos-en-carrito&#x27;);
-      this.juegosEnCarrito &#x3D; juegosEnCarritoLS ? JSON.parse(juegosEnCarritoLS) : [];
-      this.actualizarNumeroCarrito();
-    }
-  }
 
   /**
    * Cierra la sesion del usuario.
    */
   logout(): void {
-    this.authService.logout();
+    this.sessionService.logout();
+    window.location.reload();
   }
 }
 </code></pre>
