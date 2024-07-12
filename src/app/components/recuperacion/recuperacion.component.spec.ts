@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { RecuperacionComponent } from './recuperacion.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RecuperacionComponent', () => {
   let component: RecuperacionComponent;
@@ -9,7 +10,7 @@ describe('RecuperacionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecuperacionComponent,CommonModule,RouterModule.forRoot([])]
+      imports: [RecuperacionComponent,CommonModule,RouterModule.forRoot([]),HttpClientTestingModule ]
     })
     .compileComponents();
 
